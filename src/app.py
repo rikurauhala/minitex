@@ -6,9 +6,10 @@ from utils.commands import COMMANDS
 class Application:
     """The main application."""
 
-    def __init__(self):
+    def __init__(self, io):
         """Initializes a new instance of the application."""
         self._commands = COMMANDS
+        self._IO = io
 
     def start(self):
         """Starts the main application loop."""
@@ -17,7 +18,7 @@ class Application:
         self._print_commands()
 
         while True:
-            command = input().lower()
+            command = self._IO.get_command()
             match command:
                 case 'q':
                     break
