@@ -31,7 +31,7 @@ class Application:
         print("Commands:")
         for command in COMMANDS.items():
             print(command[1])
-        
+
     def _print_invalid_command(self):
         """Prints a message signifying an invalid command."""
         print("Invalid command!")
