@@ -72,14 +72,3 @@ class Reference:
 		key += self.year[-2:]
 
 		return key
-
-
-if __name__ == "__main__":
-	author = "Martin, Robert"
-	title = "Cognitive apprenticeship: making thinking visible"
-	publisher = "Prentice Hall"
-	year = "1991"
-	r = Reference(author, title, year, publisher)
-
-	print(r.data)
-	
