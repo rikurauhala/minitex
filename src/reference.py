@@ -5,7 +5,7 @@ class Reference:
 		self._year = year
 		self._publisher = publisher
 
-		self._key = self.gen_key()
+		self._key = self._gen_key()
 
 
 	@property
@@ -25,10 +25,36 @@ class Reference:
 		return self._publisher
 
 	@property
-	def data(self):
-		return 
+	def data(self) -> dict:
+		"""Generates data form the refence object that can be then used
+		to handle objects fields.
 
-	def gen_key(self):
-		raise NotImplementedError
+		Returns:
+			dict: Reference object data as dict
+		"""
+		reference = {
+			"key": self._key,
+			"authors": self._author,
+			"title": self._title,
+			"year": self._year,
+			"publisher": self._publisher
+		}
+		return reference
 
+	def _gen_key(self):
+		return
+
+
+if __name__ == "__main__":
+	author = "Allan Collins and John Seely Brown and Ann Holum"
+	title = "Cognitive apprenticeship: making thinking visible"
+	journal = "American Educator"
+	year = "1991"
+	r = Reference(author, title, journal, year)
 	
+	print(r.author)
+	print(r.title)
+	print(r.publisher)
+	print(r.year)
+
+	print(r.data)
