@@ -23,9 +23,7 @@ class ConsoleIO:
                 if len(authors) > 0:
                     authors = authors[0:-5]
                     break
-                else:
-                    print("At least one author is required")
-                    continue
+                print("At least one author is required")
             else:
                 authors += author + " and "
         title = input("Input title: ")
