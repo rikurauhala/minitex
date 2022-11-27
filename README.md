@@ -7,6 +7,21 @@ Ohjelmistotuotanto-kurssin miniprojekti | Helsingin yliopisto | Syksy 2022
 ![Continuous Integration](https://github.com/rikurauhala/minitex/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/rikurauhala/minitex/branch/main/graph/badge.svg?token=MIVVZGAX67)](https://codecov.io/gh/rikurauhala/minitex)
 
+## Instructions
+
+### How to install
+
+```bash
+# Get the source code
+$ git clone git@github.com:rikurauhala/minitex.git
+
+# Change directory
+$ cd minitex
+
+# Install dependencies
+$ poetry install
+```
+
 ## Documentation
 
 - [Product Backlog](https://docs.google.com/spreadsheets/d/e/2PACX-1vT0XfimtFOWroZy0wJ5NKa43JU2sddjG1ixwx4_bO4ShlPGQ1gfIO_tivunbP-bqmIWVCWoO5qOdBI6/pubhtml)
