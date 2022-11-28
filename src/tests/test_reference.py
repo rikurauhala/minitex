@@ -10,6 +10,24 @@ class TestReference(unittest.TestCase):
 		
 		self.r = Reference(author, title , year, publisher)
 
+	def testInvalidAuthorValue(self):
+		a = 123
+		t = "Abcd"
+		y = "1992"
+		p = "Kalevi"
+
+		with self.assertRaises(TypeError):
+			r = Reference(a, t, y, p)
+
+		with self.assertRaises(ValueError):
+			r = Reference("", t, y, p)
+
+		with self.assertRaises(TypeError):
+			self.r.author = 999
+
+		with self.assertRaises(ValueError):
+			self.r.author = ""
+
 	def testPropertiesReturnsCorrectValues(self):
 		assert isinstance(self.r.author, str)
 		assert isinstance(self.r.title, str)
