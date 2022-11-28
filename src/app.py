@@ -30,7 +30,7 @@ class Application:
     def _print_commands(self):
         """Prints a list of available commands."""
         print("Commands:")
-        for command in COMMANDS.items():
+        for command in self._commands.items():
             print(command[1])
 
     def _print_invalid_command(self):
