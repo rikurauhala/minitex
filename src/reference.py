@@ -13,14 +13,14 @@ class Reference:
 			year (str): Year published.
 			publisher (str): Publisher of the reference.
 		"""
-		self._author = author
+		self.author = author
 		self._title = title
 		self._year = year
 		self._publisher = publisher
 		self._key = self._gen_key()
 
 	@property
-	def author(self):
+	def author(self) -> str:
 		return self._author
 
 	@author.setter
@@ -29,7 +29,7 @@ class Reference:
 			raise TypeError("Expected author of value str, instead got: ",
 				type(name))
 		if not name: raise ValueError("Author cannot be exmpty")
-		
+		self._author = name
 
 	@property
 	def title(self):
@@ -60,6 +60,7 @@ class Reference:
 		}
 		return reference
 
+	
 	def _gen_key(self) -> str:
 		"""Generates key attribute for reference based on the authors lastnames
 		and the publishing year
