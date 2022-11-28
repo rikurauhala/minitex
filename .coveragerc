@@ -5,6 +5,7 @@ omit = src/**/__init__.py
        src/utils/**
        src/app.py
        src/index.py
+       src/console_io.py
 
 [report]
 omit = src/**/__init__.py
@@ -12,3 +13,4 @@ omit = src/**/__init__.py
        src/utils/**
        src/app.py
        src/index.py
+       src/console_io.py
