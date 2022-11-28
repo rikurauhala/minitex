@@ -10,23 +10,18 @@ class TestReference(unittest.TestCase):
 		
 		self.r = Reference(author, title , year, publisher)
 
-	def testInvalidAuthorValue(self):
-		a = 123
-		t = "Abcd"
-		y = "1992"
-		p = "Kalevi"
-
+	def testInvalidAttributeValues(self):
 		with self.assertRaises(TypeError):
-			r = Reference(a, t, y, p)
+			r = Reference(123, "title", "year", "publ")
 
 		with self.assertRaises(ValueError):
-			r = Reference("", t, y, p)
+			r = Reference("", "title", "year", "publ")
 
 		with self.assertRaises(TypeError):
-			self.r.author = 999
+			self.r.title = 999
 
 		with self.assertRaises(ValueError):
-			self.r.author = ""
+			self.r.year = ""
 
 	def testPropertiesReturnsCorrectValues(self):
 		assert isinstance(self.r.author, str)
@@ -48,7 +43,7 @@ class TestReference(unittest.TestCase):
 	
 	def testGenKeyGeneratesCorrectKeys(self):
 		author = "Vihavainen, Arto and Paksula, Matti and Luukkainen, Matti"
-		ref = Reference(author, "", "2011", "")
+		ref = Reference(author, "test", "2011", "test")
 		expected_key = "VPL11"
 		key = ref.data["key"]
 
@@ -57,7 +52,7 @@ class TestReference(unittest.TestCase):
 
 
 		author = "Allan Collins and John Seely Brown and Ann Holum"
-		ref = Reference(author, "", "1991", "")
+		ref = Reference(author, "test", "1991", "test")
 		expected_key = "CBH91"
 		key = ref.data["key"]
 
