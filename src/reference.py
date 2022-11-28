@@ -1,5 +1,5 @@
 import re
-
+from utils import validators
 
 class Reference:
     """Object representing a reference."""
@@ -14,35 +14,49 @@ class Reference:
             publisher (str): Publisher of the reference.
         """
         self.author = author
-        self._title = title
-        self._year = year
-        self._publisher = publisher
-        self._key = self._gen_key()
+        self.title = title
+        self.year = year
+        self.publisher = publisher
 
     @property
     def author(self) -> str:
         return self._author
 
     @author.setter
-    def author(self, name: str) -> str:
-        if not isinstance(name, str):
-            raise TypeError("Expected author of value str, instead got: ",
-                type(name))
-        if not name:
-            raise ValueError("Author cannot be exmpty")
-        self._author = name
+    def author(self, name: str) -> None:
+        if validators.validate_attribute_string(
+            name, "author"):
+            self._author = name
 
     @property
     def title(self):
         return self._title
 
+    @title.setter
+    def title(self, name: str) -> None:
+        if validators.validate_attribute_string(
+            name, "title"):
+            self._title = name
+
     @property
     def year(self):
         return self._year
 
+    @year.setter
+    def year(self, value: str) -> None:
+        if validators.validate_attribute_string(
+            value, "year"):
+            self._year = value
+
     @property
     def publisher(self):
         return self._publisher
+
+    @publisher.setter
+    def publisher(self, name: str) -> None:
+        if validators.validate_attribute_string(
+            name, "publisher"):
+            self._publisher = name
 
     @property
     def data(self) -> dict:
@@ -53,7 +67,7 @@ class Reference:
             dict: Reference object data as dict
         """
         reference = {
-            "key": self._key,
+            "key": self._gen_key(),
             "authors": self._author,
             "title": self._title,
             "year": self._year,
