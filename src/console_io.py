@@ -1,5 +1,6 @@
 class ConsoleIO:
     """Module for user input."""
+
     def print(self, string):
         """Prints the given string"""
         print(string)

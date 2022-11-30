@@ -1,7 +1,6 @@
 from os import name, system
 
 from utils.commands import COMMANDS
-from console_io import ConsoleIO
 from services.reference_service import ReferenceService
 
 class Application:
@@ -42,7 +41,7 @@ class Application:
         """Prints a list of available commands."""
         self._IO.print("Commands:")
         for command in self._commands.items():
-            print(command[1])
+            self._IO.print(command[1])
 
     def _print_invalid_command(self):
         """Prints a message signifying an invalid command."""
