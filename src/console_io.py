@@ -1,5 +1,8 @@
 class ConsoleIO:
     """Module for user input."""
+    def print(self, string):
+        """Prints the given string"""
+        print(string)
 
     def get_command(self):
         """Asks command from the user
@@ -13,7 +16,7 @@ class ConsoleIO:
         """Asks reference from the user
 
         Returns:
-            list: authors, title, year published and publisher as list
+            dict: authors, title, year published and publisher as dict
         """
 
         authors = ""
@@ -24,9 +27,17 @@ class ConsoleIO:
                     authors = authors[0:-5]
                     break
                 print("At least one author is required")
-            else:
+            elif len(author) > 0:
                 authors += author + " and "
         title = input("Input title: ")
         year = input("Input year published: ")
         publisher = input("Input publisher: ")
-        return [authors, title, year, publisher]
+
+        if authors and title and year and publisher:
+            return {"authors": authors, "title": title, "year": year, "publisher": publisher}
+    
+        self.print("Something went wrong, did you fill all the fields?")
+    
+    
+                
+                    
