@@ -10,8 +10,13 @@ class ReferenceService:
 
     def add_reference(self, reference):
         """Adds one reference to the reference repository. """
-        self._reference_repository.add(Reference(
-            reference["authors"], reference["title"], reference["publisher"], reference["year"]))
+        new_reference = Reference(
+            reference["authors"],
+            reference["title"],
+            reference["year"],
+            reference["publisher"]
+        )
+        self._reference_repository.add(new_reference)
 
     def get_references(self):
         """Translates the reference object to more human-readable form to show for the user.
