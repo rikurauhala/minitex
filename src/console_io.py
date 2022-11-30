@@ -35,9 +35,4 @@ class ConsoleIO:
 
         if authors and title and year and publisher:
             return {"authors": authors, "title": title, "year": year, "publisher": publisher}
-    
         self.print("Something went wrong, did you fill all the fields?")
-    
-    
-                
-                    

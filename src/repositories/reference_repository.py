@@ -8,9 +8,9 @@ class ReferenceRepository:
     def add(self, reference):
         """Adds one reference to the list."""
         self.references.append(reference)
-    
+
     def find_all(self):
-        """Finds all references in the repository. 
+        """Finds all references in the repository.
 
         Returns:
             list: Returns all of the references as a list
