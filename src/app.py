@@ -10,7 +10,7 @@ class Application:
     def __init__(self, io):
         """Initializes a new instance of the application."""
         self._commands = COMMANDS
-        self._IO = ConsoleIO()
+        self._IO = io
         self.reference_service = ReferenceService()
 
     def start(self):
