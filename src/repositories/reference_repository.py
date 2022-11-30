@@ -6,7 +6,11 @@ class ReferenceRepository:
         self.references = []
 
     def add(self, reference):
-        """Adds one reference to the list."""
+        """Adds a new reference.
+
+        Args:
+            reference (Reference): A new reference object to be added.
+        """
         self.references.append(reference)
 
     def find_all(self):
