@@ -27,9 +27,9 @@ class ConsoleIO:
                 if len(authors) > 0:
                     break
                 print("At least one author is required")
-            elif authors:
+            elif author and authors:
                 authors += " and " + author
-            else:
+            elif author:
                 authors += author
         title = input("Input title: ")
         year = input("Input year published: ")
