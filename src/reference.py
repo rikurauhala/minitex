@@ -1,5 +1,7 @@
 import re
+
 from utils import validators
+
 
 class Reference:
     """Object representing a reference."""
@@ -24,8 +26,7 @@ class Reference:
 
     @author.setter
     def author(self, name: str) -> None:
-        if validators.validate_attribute_string(
-            name, "author"):
+        if validators.validate_attribute_string(name, "author"):
             self._author = name
 
     @property
@@ -34,8 +35,7 @@ class Reference:
 
     @title.setter
     def title(self, name: str) -> None:
-        if validators.validate_attribute_string(
-            name, "title"):
+        if validators.validate_attribute_string(name, "title"):
             self._title = name
 
     @property
@@ -44,8 +44,7 @@ class Reference:
 
     @year.setter
     def year(self, value: str) -> None:
-        if validators.validate_attribute_string(
-            value, "year"):
+        if validators.validate_attribute_string(value, "year"):
             self._year = value
 
     @property
@@ -54,8 +53,7 @@ class Reference:
 
     @publisher.setter
     def publisher(self, name: str) -> None:
-        if validators.validate_attribute_string(
-            name, "publisher"):
+        if validators.validate_attribute_string(name, "publisher"):
             self._publisher = name
 
     @property
