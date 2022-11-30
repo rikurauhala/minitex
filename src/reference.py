@@ -80,18 +80,18 @@ class Reference:
         Returns:
             str: generated key for the reference object
         """
-        authors = re.split(' and ', self._author)
-        names_splitted = [lname.split(" ") for lname in authors]
+        authors = re.split(" and ", self._author)
+        names_splitted = [last_name.split(' ') for last_name in authors]
         last_names = []
 
         for name in names_splitted:
             try:
-                if "," in name[0]:
-                    last_names.append(name[0].strip(","))
+                if ',' in name[0]:
+                    last_names.append(name[0].strip(','))
                 else:
                     last_names.append(name[-1])
             except IndexError:
-                last_names.append(name[0].strip(","))
+                last_names.append(name[0].strip(','))
 
         if len(last_names) == 1:
             key = last_names[0]

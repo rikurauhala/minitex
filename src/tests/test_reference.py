@@ -17,6 +17,9 @@ class TestReference(unittest.TestCase):
 			Reference("", "title", "year", "publ")
 
 		with self.assertRaises(TypeError):
+			Reference("author", "title", "year", None)
+
+		with self.assertRaises(TypeError):
 			self.r.title = 999
 
 		with self.assertRaises(ValueError):
@@ -60,4 +63,10 @@ class TestReference(unittest.TestCase):
 	def testStrRepresentationIsCorrect(self):
 		actual_string = self.r.__str__()
 		expected_string = "Robert Martin | Cognitive apprenticeship: making thinking visible | Prentice Hall (1991)"
+		self.assertEqual(actual_string, expected_string)
+
+		author = "Obi-wan Kenobi and Anakin Skywalker and Yoda"
+		reference = Reference(author, "Highground", "2005", "Lucasfilms")
+		actual_string = reference.__str__()
+		expected_string = "Obi-wan Kenobi, Anakin Skywalker and Yoda | Highground | Lucasfilms (2005)"
 		self.assertEqual(actual_string, expected_string)
