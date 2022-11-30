@@ -8,6 +8,7 @@ omit = src/**/__init__.py
        src/console_io.py
 
 [report]
+source = src
 omit = src/**/__init__.py
        src/tests/**
        src/utils/**
