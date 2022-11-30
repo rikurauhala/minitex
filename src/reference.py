@@ -113,7 +113,7 @@ class Reference:
             string (str): A string representation of the Reference object.
         """
         authors = ""
-        splitted_authors = self.author.split(' and ')
+        splitted_authors = self.author.split(" and ")
         for author in splitted_authors:
             if author == splitted_authors[-1] and len(splitted_authors) > 1:
                 authors += " and "
@@ -121,7 +121,9 @@ class Reference:
                 authors += ", "
             if ", " in author:
                 names = author.split(", ")
-                authors += names[1] + " " + names[0]
+                first_name = names[1]
+                last_name = names[0]
+                authors += f"{first_name} {last_name}"
             else:
                 authors += author
         string = f"{authors} | {self.title} | {self.publisher} ({self.year})"
