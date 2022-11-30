@@ -7,15 +7,14 @@ class TestReference(unittest.TestCase):
 		title = "Cognitive apprenticeship: making thinking visible"
 		year = "1991"
 		publisher = "Prentice Hall"
-		
-		self.r = Reference(author, title , year, publisher)
+		self.r = Reference(author, title, year, publisher)
 
 	def testInvalidAttributeValues(self):
 		with self.assertRaises(TypeError):
-			r = Reference(123, "title", "year", "publ")
+			Reference(123, "title", "year", "publ")
 
 		with self.assertRaises(ValueError):
-			r = Reference("", "title", "year", "publ")
+			Reference("", "title", "year", "publ")
 
 		with self.assertRaises(TypeError):
 			self.r.title = 999
@@ -40,7 +39,7 @@ class TestReference(unittest.TestCase):
 
 		assert isinstance(self.r.data, dict)
 		self.assertEqual(self.r.data, excepted_data)
-	
+
 	def testGenKeyGeneratesCorrectKeys(self):
 		author = "Vihavainen, Arto and Paksula, Matti and Luukkainen, Matti"
 		ref = Reference(author, "test", "2011", "test")
@@ -50,7 +49,6 @@ class TestReference(unittest.TestCase):
 		assert isinstance(key, str)
 		self.assertEqual(key, expected_key)
 
-
 		author = "Allan Collins and John Seely Brown and Ann Holum"
 		ref = Reference(author, "test", "1991", "test")
 		expected_key = "CBH91"
@@ -58,3 +56,8 @@ class TestReference(unittest.TestCase):
 
 		assert isinstance(key, str)
 		self.assertEqual(key, expected_key)
+
+	def testStrRepresentationIsCorrect(self):
+		actual_string = self.r.__str__()
+		expected_string = "Robert Martin | Cognitive apprenticeship: making thinking visible | Prentice Hall (1991)"
+		self.assertEqual(actual_string, expected_string)
