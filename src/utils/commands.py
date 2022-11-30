@@ -1,5 +1,6 @@
 COMMANDS = {
     "q": "[ q ] quit",
     "h": "[ h ] print the command list",
-    "1": "[ 1 ] to be implemented"
+    "n": "[ n ] add a new reference",
+    "s": "[ s ] show all references"
 }

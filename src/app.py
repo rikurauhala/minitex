@@ -1,7 +1,8 @@
 from os import name, system
 
 from utils.commands import COMMANDS
-
+from console_io import ConsoleIO
+from services.reference_service import ReferenceService
 
 class Application:
     """The main application."""
@@ -10,6 +11,7 @@ class Application:
         """Initializes a new instance of the application."""
         self._commands = COMMANDS
         self._IO = io
+        self.reference_service = ReferenceService()
 
     def start(self):
         """Starts the main application loop."""
@@ -24,18 +26,27 @@ class Application:
                     break
                 case 'h':
                     self._print_commands()
+                case "n":
+                    reference = self._IO.get_reference()
+                    if reference:
+                        self.reference_service.add_reference(reference)
+                        self._IO.print("Added a new reference.")
+                case "s":
+                    self._IO.print("References: ")
+                    for reference in self.reference_service.get_references():
+                        self._IO.print(reference)
                 case _:
                     self._print_invalid_command()
 
     def _print_commands(self):
         """Prints a list of available commands."""
-        print("Commands:")
+        self._IO.print("Commands:")
         for command in self._commands.items():
             print(command[1])
 
     def _print_invalid_command(self):
         """Prints a message signifying an invalid command."""
-        print("Invalid command!")
+        self._IO.print("Invalid command!")
 
     def _clear_console(self):
         """Clears the console."""
