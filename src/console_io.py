@@ -24,15 +24,14 @@ class ConsoleIO:
             author = input("Input author in format lastname, firstname or input q to stop: ")
             if author == "q":
                 if len(authors) > 0:
-                    authors = authors[0:-5]
                     break
                 print("At least one author is required")
-            else:
-                authors += author + " and "
+            elif authors != "":
+                author += " and " + author
+            authors += author
         title = input("Input title: ")
         year = input("Input year published: ")
         publisher = input("Input publisher: ")
-
         if authors and title and year and publisher:
             return {"authors": authors, "title": title, "year": year, "publisher": publisher}
         self.print("Something went wrong, did you fill all the fields?")

@@ -25,7 +25,7 @@ class ReferenceService:
             authors = ""
             splitted_authors = reference["authors"].split(' and ')
             for author in splitted_authors:
-                if author == splitted_authors[-1]:
+                if author == splitted_authors[-1] and len(splitted_authors) > 1:
                     authors += " and "
                 elif author != splitted_authors[0]:
                     authors += ", "
