@@ -105,3 +105,24 @@ class Reference:
         key += self.year[-2:]
 
         return key
+
+    def __str__(self):
+        """Returns the data of the reference in a readable form.
+
+        Returns:
+            string (str): A string representation of the Reference object.
+        """
+        authors = ""
+        splitted_authors = self.author.split(' and ')
+        for author in splitted_authors:
+            if author == splitted_authors[-1] and len(splitted_authors) > 1:
+                authors += " and "
+            elif author != splitted_authors[0]:
+                authors += ", "
+            if ", " in author:
+                names = author.split(", ")
+                authors += names[1] + " " + names[0]
+            else:
+                authors += author
+        string = f"{authors} | {self.title} | {self.publisher} ({self.year})"
+        return string
