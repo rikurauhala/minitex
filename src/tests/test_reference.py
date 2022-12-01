@@ -1,6 +1,6 @@
 import unittest
 
-from reference import Reference
+from entities.reference import Reference
 
 
 class TestReference(unittest.TestCase):

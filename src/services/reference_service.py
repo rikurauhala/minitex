@@ -1,5 +1,5 @@
 from repositories.reference_repository import ReferenceRepository
-from reference import Reference
+from entities.reference import Reference
 
 
 class ReferenceService:
