@@ -16,22 +16,46 @@ class FileWriter:
         """Prompt user for directory where to save the Bibtex file
 
         Returns:
-            str: path to directory
+            Path: path to directory
         """
         directory = filedialog.askdirectory(title="Select Folder")
         return Path(directory)
 
-    def write_bibtex(self):
+    def write_bibtex(self, references: list = None):
         folder_path = self._get_user_directory()
         file_path = folder_path.joinpath(self._FILENAME)
 
-        #If file does not already exist in the directory write new one
-        if not file_path.is_file():
-            print("Ei ollu ei")
+        with open(file_path, "a") as file:
+            for ref in references:
+                if 'type' not in ref:
+                    ref_type = "@BOOK"
+                else: ref_type = ref['type']
 
-        #else append to a existing file
-        else: print("oli oli")
+                entry = f"""{ref_type}{"{"}{ref['key']},
+                    title = "{ref['title']}",
+                    author = "{ref['authors']}",
+                    publisher = "{ref['publisher']}",
+                    year = "{ref['year']}",
+                {"},"}
+                """
+                print(entry)
+                file.write(entry)
+
 
 if __name__ == "__main__":
     f = FileWriter()
-    f.write_bibtex()
+    test = [{
+            'key': 'Martin91', 
+            'authors': 'Martin, Robert', 
+            'title': 'Cognitive apprenticeship: making thinking visible', 
+            'year': '1991', 
+            'publisher': 'Prentice Hall'
+        },
+        {
+            'key': 'TTT01', 
+            'authors': 'Testi, Testi and Testi, Tosto and Testo, Timo', 
+            'title': 'Testaillaan uudelleen', 
+            'year': '2001', 
+            'publisher': 'Kalevin koodilabra'
+        }]
+    f.write_bibtex(test)
