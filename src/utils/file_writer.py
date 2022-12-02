@@ -25,7 +25,12 @@ class FileWriter:
         folder_path = self._get_user_directory()
         file_path = folder_path.joinpath(self._FILENAME)
 
-        print(file_path.is_file())
+        #If file does not already exist in the directory write new one
+        if not file_path.is_file():
+            print("Ei ollu ei")
+
+        #else append to a existing file
+        else: print("oli oli")
 
 if __name__ == "__main__":
     f = FileWriter()
