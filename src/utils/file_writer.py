@@ -21,7 +21,9 @@ class FileWriter:
         directory = filedialog.askdirectory(title="Select Folder")
         return Path(directory)
 
-    def write_bibtex(self, references: list):
+    def write_bibtex(self, references: list) -> None:
+        """Write given list of reference objects to a Bibtex file
+        """
         folder_path = self._get_user_directory()
         file_path = folder_path.joinpath(self._FILENAME)
 
@@ -38,7 +40,7 @@ class FileWriter:
                     year = "{ref['year']}"
                 {"}"}
                 """
-                
+
                 file.write("\n")
                 file.write(entry)
 
