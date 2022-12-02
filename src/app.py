@@ -32,8 +32,10 @@ class Application:
                         self._IO.print("Added a new reference.")
                 case "s":
                     self._IO.print("References: ")
+                    indx = 1
                     for reference in self.reference_service.get_references():
-                        self._IO.print(reference)
+                        self._IO.print(f"{indx}: {reference}")
+                        indx += 1
                 case _:
                     self._print_invalid_command()
 

@@ -27,5 +27,11 @@ class ReferenceService:
         """
         references = []
         for reference in self._reference_repository.find_all():
-            references.append(reference)
+            referenceobject = Reference(
+                reference[1],
+                reference[2],
+                str(reference[3]),
+                reference[4]
+            )
+            references.append(referenceobject)
         return references
