@@ -13,3 +13,11 @@ class FileWriter:
     def _get_user_directory(self):
         directory = filedialog.askdirectory(title="Select Folder")
         return directory
+
+    def write_bibtex(self):
+        folder_path = self._get_user_directory()
+        print(folder_path)
+
+if __name__ == "__main__":
+    f = FileWriter()
+    f.write_bibtex()
