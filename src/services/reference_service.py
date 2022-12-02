@@ -1,4 +1,4 @@
-from repositories.reference_repository import ReferenceRepository
+from repositories.database import Repository
 from entities.reference import Reference
 
 
@@ -7,7 +7,7 @@ class ReferenceService:
 
     def __init__(self):
         """Initializes a new ReferenceService."""
-        self._reference_repository = ReferenceRepository()
+        self._reference_repository = Repository()
 
     def add_reference(self, reference):
         """Adds one reference to the reference repository. """
