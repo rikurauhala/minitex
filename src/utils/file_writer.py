@@ -10,7 +10,7 @@ class FileWriter:
         """
         self._root = tk.Tk()
         self._root.withdraw()
-        self._FILENAME = "references.bib"
+        self._file_name = "references.bib"
 
     def _get_user_directory(self) -> Path:
         """Prompt user for directory where to save the Bibtex file
@@ -25,9 +25,9 @@ class FileWriter:
         """Write given list of reference objects to a Bibtex file
         """
         folder_path = self._get_user_directory()
-        file_path = folder_path.joinpath(self._FILENAME)
+        file_path = folder_path.joinpath(self._file_name)
 
-        with open(file_path, "a") as file:
+        with open(file_path, "a", encoding="utf-8") as file:
             for ref in references:
                 if 'type' not in ref:
                     ref_type = "@BOOK"
@@ -48,17 +48,17 @@ class FileWriter:
 if __name__ == "__main__":
     f = FileWriter()
     test = [{
-            'key': 'Martin91', 
-            'authors': 'Martin, Robert', 
-            'title': 'Cognitive apprenticeship: making thinking visible', 
-            'year': '1991', 
+            'key': 'Martin91',
+            'authors': 'Martin, Robert',
+            'title': 'Cognitive apprenticeship: making thinking visible',
+            'year': '1991',
             'publisher': 'Prentice Hall'
         },
         {
-            'key': 'TTT01', 
-            'authors': 'Testi, Testi and Testi, Tosto and Testo, Timo', 
-            'title': 'Testaillaan uudelleen', 
-            'year': '2001', 
+            'key': 'TTT01',
+            'authors': 'Testi, Testi and Testi, Tosto and Testo, Timo',
+            'title': 'Testaillaan uudelleen',
+            'year': '2001',
             'publisher': 'Kalevin koodilabra'
         }]
     f.write_bibtex(test)
