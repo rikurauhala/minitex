@@ -26,7 +26,7 @@ $ poetry install
 
 ```bash
 # Run the application
-$ poetry run python src/index.py
+$ poetry run invoke start
 
 # Alternative way to run
 $ poetry shell
