@@ -1,18 +1,25 @@
 import unittest
+
 from app import Application
+
 
 class IOStub:
     def __init__(self):
         self.command = []
-        self.reference = {"authors":"Doe, John and Caesar, Julius","title": "Very good title","year": "1999","publisher": "Otava"}
+        self.reference = {
+            "authors": "Doe, John and Caesar, Julius",
+            "title": "Very good title",
+            "year": "1999",
+            "publisher": "Otava"
+        }
         self.printitems = []
 
     def get_command(self):
         print(self.command)
         return self.command.pop(0)
 
-    def give_command(self, comm):
-        self.command.append(comm)
+    def give_command(self, command):
+        self.command.append(command)
 
     def get_reference(self):
         return self.reference
@@ -29,7 +36,6 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("h")
         self.app._IO.give_command("q")
         self.app.start()
-
         command1 = self.app._IO.printitems[6]
         self.assertEqual(command1, "[ q ] quit")
 
@@ -46,7 +52,8 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("q")
         self.app.start()
         reference = self.app._IO.printitems[7]
-        self.assertEqual(reference.author, "Doe, John and Caesar, Julius")
+        self.assertIn("John Doe", reference)
+        self.assertIn("Julius Caesar", reference)
 
     def test_invalid_command(self):
         self.app._IO.give_command("x")

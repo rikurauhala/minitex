@@ -1,16 +1,16 @@
-from repositories.database import Repository
 from entities.reference import Reference
+from repositories.database import Repository
 
 
 class ReferenceService:
-    """Class responsible for the application logic. """
+    """Class responsible for the application logic."""
 
     def __init__(self):
         """Initializes a new ReferenceService."""
         self._reference_repository = Repository()
 
     def add_reference(self, reference):
-        """Adds one reference to the reference repository. """
+        """Adds one reference to the reference repository."""
         new_reference = Reference(
             reference["authors"],
             reference["title"],
@@ -27,11 +27,11 @@ class ReferenceService:
         """
         references = []
         for reference in self._reference_repository.find_all():
-            referenceobject = Reference(
+            reference_object = Reference(
                 reference[1],
                 reference[2],
                 str(reference[3]),
                 reference[4]
             )
-            references.append(referenceobject)
+            references.append(reference_object)
         return references
