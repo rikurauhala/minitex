@@ -20,6 +20,9 @@ $ cd minitex
 
 # Install dependencies
 $ poetry install
+
+# Create a new database
+$ poetry run invoke build
 ```
 
 ### How to run
