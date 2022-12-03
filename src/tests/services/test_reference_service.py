@@ -8,8 +8,6 @@ class TestReferenceRepository(unittest.TestCase):
     def setUp(self):
         self.repository = ReferenceService()
         self.database = reference_repository
-        #self.database.drop_tables()
-        #self.database.create_table()
         self.reference1 = {
             "authors": "Doe, John and Caesar, Julius",
             "title": "Very good title",
@@ -31,12 +29,11 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(stored_ref.year, self.reference1["year"])
         self.assertEqual(stored_ref.publisher, self.reference1["publisher"])
 
-    """ Disabled until there is an option to have a separate test database
     def test_adds_multiple_references(self):
         self.repository.add_reference(self.reference1)
         self.repository.add_reference(self.reference2)
-        stored_ref1 = self.repository.get_references()[0]
-        stored_ref2 = self.repository.get_references()[1]
+        stored_ref1 = self.repository.get_references()[2]
+        stored_ref2 = self.repository.get_references()[3]
         self.assertEqual(stored_ref1.author, self.reference1["authors"])
         self.assertEqual(stored_ref1.title, self.reference1["title"])
         self.assertEqual(stored_ref1.year, self.reference1["year"])
@@ -45,4 +42,3 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(stored_ref2.title, self.reference2["title"])
         self.assertEqual(stored_ref2.year, self.reference2["year"])
         self.assertEqual(stored_ref2.publisher, self.reference2["publisher"])
-    """

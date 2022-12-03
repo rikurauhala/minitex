@@ -19,12 +19,12 @@ class TestReferenceRepository(unittest.TestCase):
             year="2005",
             publisher="George Lucas"
         )
-    
-    """ Disabled until there is a test database
+
+    """
     def test_creates_item_to_repository(self):
         self.repository.create(self.reference1)
         references = self.repository.find_all()
-        self.assertEqual(len(references), 1)
+        self.assertEqual(references, 1)
 
     def test_creates_multiple_items_to_repository(self):
         self.repository.create(self.reference1)
