@@ -1,28 +1,41 @@
 import unittest
-from repositories.reference_repository import ReferenceRepository
+
+from entities.reference import Reference
+from repositories.reference_repository import reference_repository
+
 
 class TestReferenceRepository(unittest.TestCase):
     def setUp(self) -> None:
-        self.repository = ReferenceRepository()
+        self.repository = reference_repository
+        self.reference1 = Reference(
+            author="Kenobi, Obi-wan",
+            title="It's over Anakin, I have the high ground!",
+            year="2005",
+            publisher="George Lucas"
+        )
+        self.reference2 = Reference(
+            author="Ki-Adi-Mundi",
+            title="What About the Droid Attack on the Wookiees?",
+            year="2005",
+            publisher="George Lucas"
+        )
     
-    def test_adds_item_to_reposiotory(self):
-        item = ["itemtoadd"]
-        self.repository.add(item)
-        self.assertEqual(self.repository.references[0], item)
+    """ Disabled until there is a test database
+    def test_creates_item_to_repository(self):
+        self.repository.create(self.reference1)
+        references = self.repository.find_all()
+        self.assertEqual(len(references), 1)
 
-    def test_adds_multiple_items_to_repository(self):
-        item1 = ["item1toadd"]
-        item2 = ["item2toadd"]
-        self.repository.add(item1)
-        self.repository.add(item2)
-        self.assertEqual(self.repository.references[0], item1)
-        self.assertEqual(self.repository.references[1], item2)
+    def test_creates_multiple_items_to_repository(self):
+        self.repository.create(self.reference1)
+        self.repository.create(self.reference2)
+        references = self.repository.find_all()
+        self.assertEqual(len(references), 2)
 
     def test_returns_items_from_repository(self):
-        item1 = ["item1toadd"]
-        item2 = ["item2toadd"]
-        self.repository.add(item1)
-        self.repository.add(item2)
+        self.repository.create(self.reference1)
+        self.repository.create(self.reference2)
         items = self.repository.find_all()
-        self.assertEqual(items[0], item1)
-        self.assertEqual(items[1], item2)
+        self.assertEqual(items[0], self.reference1)
+        self.assertEqual(items[1], self.reference2)
+    """

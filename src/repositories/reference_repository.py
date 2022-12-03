@@ -1,22 +1,25 @@
+from database import get_database_connection
+
+
 class ReferenceRepository:
-    """Saves the references to a list."""
+    def __init__(self, connection):
+        self._connection = connection
+        self._cursor = self._connection.cursor()
 
-    def __init__(self):
-        """Initializes the list."""
-        self.references = []
-
-    def add(self, reference):
-        """Adds a new reference.
-
-        Args:
-            reference (Reference): A new reference object to be added.
-        """
-        self.references.append(reference)
+    def create(self, reference):
+        authors = reference.author
+        title = reference.title
+        year = reference.year
+        publisher = reference.publisher
+        self._cursor.execute(
+            "INSERT INTO bookreferences (author, title, year, publisher) VALUES (?, ?, ?, ?)",
+            (authors, title, int(year), publisher)
+        )
+        self._connection.commit()
 
     def find_all(self):
-        """Finds all references in the repository.
+        references = self._cursor.execute("SELECT * FROM bookreferences")
+        return references
 
-        Returns:
-            list: Returns all of the references as a list
-        """
-        return self.references
+
+reference_repository = ReferenceRepository(get_database_connection())
