@@ -20,7 +20,7 @@ class Repository:
                 publisher TEXT
             )"""
         )
-    
+
     def drop_tables(self):
         self.cursor.execute("""
             DROP TABLE IF EXISTS bookreferences;
