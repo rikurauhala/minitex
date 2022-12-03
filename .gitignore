@@ -8,4 +8,5 @@ coverage.xml
 htmlcov
 
 # Database files
-.db
+*.db
+*.sqlite
