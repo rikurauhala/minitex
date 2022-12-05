@@ -61,24 +61,4 @@ class FileWriter:
                     file.write(entry)
 
         except OSError:
-            print("something went wrong, writing to file, check path: ",
-                file_path)
-
-if __name__ == "__main__":
-    f = FileWriter(folder_path="./src/tests")
-    #f = FileWriter()
-    test = [{
-            'key': 'Martin91',
-            'authors': 'Martin, Robert',
-            'title': 'Cognitive apprenticeship: making thinking visible',
-            'year': '1991',
-            'publisher': 'Prentice Hall'
-        },
-        {
-            'key': 'TTT01',
-            'authors': 'Testi, Testi and Testi, Tosto and Testo, Timo',
-            'title': 'Testaillaan uudelleen',
-            'year': '2001',
-            'publisher': 'Kalevin koodilabra'
-        }]
-    f.write_bibtex(test)
+            raise TypeError("Expected directory to be a valid path, instead got: ", file_path)
