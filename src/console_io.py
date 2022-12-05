@@ -8,6 +8,13 @@ class ConsoleIO:
     def input(self, string):
         return input(string)
 
+    def input_int(self, string):
+        while True:
+            integer = input(string)
+            if integer.isnumeric():
+                return int(integer)
+            self.print("Input must be an integer. ")
+
     def get_command(self):
         """Asks command from the user
 
@@ -15,7 +22,7 @@ class ConsoleIO:
             str: lower case command as str
         """
         return input("Input command: ").lower()
-    
+
     def get_reference(self):
         """Asks reference from the user
 
@@ -34,9 +41,9 @@ class ConsoleIO:
                 authors += " and " + author
             elif author:
                 authors += author
-        title = input("Input title: ")
-        year = input("Input year published: ")
-        publisher = input("Input publisher: ")
+        title = self.input("Input title: ")
+        year = self.input_int("Input year published: ")
+        publisher = self.input("Input publisher: ")
         if authors and title and year and publisher:
-            return {"authors": authors, "title": title, "year": year, "publisher": publisher}
+            return {"authors": authors, "title": title, "year": str(year), "publisher": publisher}
         self.print("Something went wrong, did you fill all the fields?")

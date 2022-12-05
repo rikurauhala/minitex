@@ -36,14 +36,14 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("h")
         self.app._IO.give_command("q")
         self.app.start()
-        command1 = self.app._IO.printitems[7]
+        command1 = self.app._IO.printitems[8]
         self.assertEqual(command1, "[ q ] quit")
 
     def test_adds_reference(self):
         self.app._IO.give_command("n")
         self.app._IO.give_command("q")
         self.app.start()
-        message = self.app._IO.printitems[6]
+        message = self.app._IO.printitems[7]
         self.assertEqual(message, "Added a new reference.")
 
     def test_prints_references(self):
@@ -51,7 +51,7 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("s")
         self.app._IO.give_command("q")
         self.app.start()
-        reference = self.app._IO.printitems[8]
+        reference = self.app._IO.printitems[9]
         self.assertIn("John Doe", reference)
         self.assertIn("Julius Caesar", reference)
 
@@ -59,5 +59,5 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("x")
         self.app._IO.give_command("q")
         self.app.start()
-        message = self.app._IO.printitems[6]
+        message = self.app._IO.printitems[7]
         self.assertEqual(message, "Invalid command!")
