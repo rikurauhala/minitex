@@ -2,7 +2,7 @@ import os.path
 import unittest
 import tempfile
 
-from utils.file_writer import FileWriter
+from file_writer import FileWriter
 
 class TestFileWriter(unittest.TestCase):
     def setUp(self) -> None:
@@ -38,6 +38,8 @@ class TestFileWriter(unittest.TestCase):
             self.assertTrue(os.path.isdir(tmp_dir))
 
             with open(tmp_dir + "/references.bib", "r") as references:
-                content = references.read(6)
-                expected_content = "\n@BOOK"
+                content = references.read(16)
+                expected_content = "\n@BOOK{Martin91,"
+
                 self.assertEqual(content, expected_content)
+                self.assertEqual(len(references.read()), 321)
