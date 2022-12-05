@@ -1,8 +1,10 @@
 from pathlib import Path
 
+
 class FileWriter:
     """Class for writing Bibtex files
     """
+
     def __init__(self, folder_path: str = None) -> None:
         """Create filewriter instance
         """
@@ -14,7 +16,12 @@ class FileWriter:
         self._file_name = "references.bib"
 
     def get_filepath(self):
-            return str(self._folder_path.joinpath(self._file_name).resolve())
+        """Get the filepath as an absolute path to the references.bib
+
+        Return: 
+            str: get the filepath as a string
+        """
+        return str(self._folder_path.joinpath(self._file_name).resolve())
 
     def _make_entry_string(self, ref: dict) -> str:
         """Create entry string from reference to be saved in Bibtex file
@@ -24,7 +31,8 @@ class FileWriter:
         """
         if 'type' not in ref:
             ref_type = "@BOOK"
-        else: ref_type = ref['type']
+        else:
+            ref_type = ref['type']
 
         return f"""{ref_type}{"{"}{ref['key']},
     title = "{ref['title']}",
@@ -51,5 +59,4 @@ class FileWriter:
 
         except OSError as exc:
             raise TypeError('Expected directory to be a valid path, instead got: ',
-                file_path) from exc
-        
+                            file_path) from exc
