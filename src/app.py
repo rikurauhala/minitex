@@ -33,11 +33,15 @@ class Application:
                         self._reference_service.add_reference(reference)
                         self._IO.print("Added a new reference.")
                 case 's':
-                    self._IO.print("References: ")
                     index = 1
-                    for reference in self._reference_service.get_references():
-                        self._IO.print(f"{index}: {reference}")
-                        index += 1
+                    references = self._reference_service.get_references()
+                    if references:
+                        for reference in references:
+                            self._IO.print("References: ")
+                            self._IO.print(f"{index}: {reference}")
+                            index += 1
+                    else:
+                        self._IO.print("No references have been added yet.")
                 case 'e':
                          if (self._file_writer.write_bibtex(self._reference_service.get_references())):
                             self._IO.print("References exported succesfully to " + self._file_writer.get_filepath()) 
