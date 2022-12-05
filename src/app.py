@@ -39,7 +39,8 @@ class Application:
                         self._IO.print(f"{index}: {reference}")
                         index += 1
                 case 'e':
-                    self._file_writer.write_bibtex(self._reference_service.get_references())
+                         if (self._file_writer.write_bibtex(self._reference_service.get_references())):
+                            self._IO.print("References exported succesfully to " + self._file_writer.get_filepath()) 
                 case _:
                     self._print_invalid_command()
 
