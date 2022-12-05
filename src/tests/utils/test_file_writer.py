@@ -41,6 +41,3 @@ class TestFileWriter(unittest.TestCase):
                 content = references.read(6)
                 expected_content = "\n@BOOK"
                 self.assertEqual(content, expected_content)
-                
-
-

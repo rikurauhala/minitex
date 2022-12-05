@@ -60,5 +60,6 @@ class FileWriter:
                     file.write("\n")
                     file.write(entry)
 
-        except OSError:
-            raise TypeError("Expected directory to be a valid path, instead got: ", file_path)
+        except OSError as exc:
+            raise TypeError('Expected directory to be a valid path, instead got: ',
+                file_path) from exc
