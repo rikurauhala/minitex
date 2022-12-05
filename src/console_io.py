@@ -5,6 +5,9 @@ class ConsoleIO:
         """Prints the given string"""
         print(string)
 
+    def input(self, string):
+        return input(string)
+
     def get_command(self):
         """Asks command from the user
 
@@ -12,7 +15,7 @@ class ConsoleIO:
             str: lower case command as str
         """
         return input("Input command: ").lower()
-
+    
     def get_reference(self):
         """Asks reference from the user
 

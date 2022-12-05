@@ -36,5 +36,10 @@ class ReferenceRepository:
         references = self._cursor.execute("SELECT * FROM bookreferences")
         return references
 
+    def delete(self, reference):
+        self._cursor.execute("DELETE FROM bookreferences WHERE author = ? AND title = ? AND year = ? AND publisher = ?",
+        (reference.author, reference.title, reference.year, reference.publisher))
+        self._connection.commit()
+
 
 reference_repository = ReferenceRepository(get_database_connection())

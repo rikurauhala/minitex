@@ -15,7 +15,7 @@ class FileWriter:
 
         self._file_name = "references.bib"
 
-    def get_filepath(self):
+    def get_filepath(self) -> str:
         """Get the filepath as an absolute path to the references.bib
 
         Return:

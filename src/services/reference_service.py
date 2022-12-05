@@ -36,3 +36,6 @@ class ReferenceService:
             )
             references.append(reference_object)
         return references
+
+    def delete_reference(self, reference):
+        self._reference_repository.delete(reference)
