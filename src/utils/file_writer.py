@@ -52,16 +52,21 @@ class FileWriter:
 
         file_path = self._folder_path.joinpath(self._file_name)
 
-        with open(file_path, "a", encoding="utf-8") as file:
-            for ref in references:
-                entry = self._make_entry_string(ref)
-                
-                file.write("\n")
-                file.write(entry)
+        try:
+            with open(file_path, "a", encoding="utf-8") as file:
+                for ref in references:
+                    entry = self._make_entry_string(ref)
+
+                    file.write("\n")
+                    file.write(entry)
+
+        except OSError:
+            print("something went wrong, writing to file, check path: ",
+                file_path)
 
 if __name__ == "__main__":
-    #f = FileWriter(folder_path="./src/tests/")
-    f = FileWriter()
+    f = FileWriter(folder_path="./src/tests")
+    #f = FileWriter()
     test = [{
             'key': 'Martin91',
             'authors': 'Martin, Robert',
