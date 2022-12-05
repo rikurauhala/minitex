@@ -14,7 +14,7 @@ class FileWriter:
         self._file_name = "references.bib"
 
     def get_filepath(self):
-            return self._folder_path.joinpath(self._file_name)
+            return str(self._folder_path.joinpath(self._file_name).resolve())
 
     def _make_entry_string(self, ref: dict) -> str:
         """Create entry string from reference to be saved in Bibtex file
@@ -34,7 +34,7 @@ class FileWriter:
 {"}"}
 """
 
-    def write_bibtex(self, references: list) -> None:
+    def write_bibtex(self, references: list) -> bool:
         """Write given list of reference objects to a Bibtex file
         """
         file_path = self._folder_path.joinpath(self._file_name)
@@ -48,6 +48,7 @@ class FileWriter:
 
                     file.write("\n")
                     file.write(entry)
+                return True
 
         except OSError as exc:
             raise TypeError('Expected directory to be a valid path, instead got: ',
