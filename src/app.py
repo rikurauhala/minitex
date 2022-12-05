@@ -2,6 +2,7 @@ from os import name, system
 
 from utils.commands import COMMANDS
 from services.reference_service import ReferenceService
+from file_writer import FileWriter
 
 class Application:
     """The main application."""
@@ -11,6 +12,7 @@ class Application:
         self._commands = COMMANDS
         self._IO = io
         self._reference_service = ReferenceService()
+        self._file_writer =FileWriter()
 
     def start(self):
         """Starts the main application loop."""
@@ -36,6 +38,8 @@ class Application:
                     for reference in self._reference_service.get_references():
                         self._IO.print(f"{index}: {reference}")
                         index += 1
+                case 'e':
+                    self._file_writer.write_bibtex(self._reference_service.get_references())
                 case _:
                     self._print_invalid_command()
 

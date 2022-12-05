@@ -27,6 +27,13 @@ class ReferenceRepository:
         )
         self._connection.commit()
 
+    def delete(self, reference):
+        self._cursor.execute(
+            "DELETE FROM bookreferences WHERE (author == ?, title == ?, year == ?, publisher == ?)",
+            (reference["authors"], reference["title"], reference["year"], reference["publisher"])
+        )
+        self._connection.commit()
+
     def find_all(self):
         """Finds all reference objects in the database.
 
