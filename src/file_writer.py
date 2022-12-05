@@ -41,11 +41,10 @@ class FileWriter:
 
         try:
             with open(file_path, "a", encoding="utf-8") as file:
+                
                 file.truncate(0)
                 for ref in references:
-                    ref = ref.data
-                    entry = self._make_entry_string(ref)
-
+                    entry = self._make_entry_string(ref.data)
                     file.write("\n")
                     file.write(entry)
                 return True

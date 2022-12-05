@@ -1,26 +1,16 @@
 import os.path
 import unittest
 import tempfile
+from entities.reference import Reference
 
 from file_writer import FileWriter
 
 class TestFileWriter(unittest.TestCase):
     def setUp(self) -> None:
         self.folder_path = "./src/tests"
-        self.test_entries = [{
-                'key': 'Martin91',
-                'authors': 'Martin, Robert',
-                'title': 'Cognitive apprenticeship: making thinking visible',
-                'year': '1991',
-                'publisher': 'Prentice Hall'
-            },
-            {
-                'key': 'TTT01',
-                'authors': 'Testi, Testi and Testi, Tosto and Testo, Timo',
-                'title': 'Testaillaan uudelleen',
-                'year': '2001',
-                'publisher': 'Kalevin koodilabra'
-            }]
+        self.test_entries = [Reference('Martin, Robert', 'Cognitive apprenticeship: making thinking visible',
+        '1991', 'Prentice Hall'), Reference('Testi, Testi and Testi, Tosto and Testo, Timo', 'Testaillaan uudelleen',
+                '2001', 'Kalevin koodilabra')]
 
     def testIncorrectDirectory(self):
         with self.assertRaises(TypeError):
