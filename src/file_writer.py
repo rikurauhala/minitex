@@ -10,7 +10,7 @@ class FileWriter:
             self._folder_path = Path("./data")
         else:
             self._folder_path = Path(folder_path)
-            
+
         self._file_name = "references.bib"
 
 
