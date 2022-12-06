@@ -23,10 +23,10 @@ class ConsoleIO:
             int: input as an integer
         """
         while True:
-            enter = input(string)
-            if enter.isnumeric():
-                return int(enter)
-            elif enter.lower() == "q":
+            integer = input(string)
+            if integer.isnumeric():
+                return int(integer)
+            if integer == "q":
                 break
             self.print("Input must be an integer. ")
 
