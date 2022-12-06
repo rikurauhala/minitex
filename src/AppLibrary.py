@@ -1,16 +1,17 @@
-""""
+"""
 To be built very soon
 
 from stub_io import StubIO
-from repositories.user_repository import UserRepository
-from services.user_service import UserService
+from utils.commands import COMMANDS
+from services.reference_service import ReferenceService
+from file_writer import FileWriter
 from app import App
 
 
 class AppLibrary:
     def __init__(self):
         self._io = StubIO()
-        self._user_repository = UserRepository()
+        self._reference_service = ReferenceService()
         self._user_service = UserService(self._user_repository)
 
         self._app = App(
