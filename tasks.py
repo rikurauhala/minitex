@@ -17,6 +17,11 @@ def test(ctx):
 
 
 @task
+def robot(ctx):
+    ctx.run("robot src/tests", pty=True)
+
+
+@task
 def coverage(ctx):
     ctx.run("coverage run --branch -m pytest src", pty=True)
 

@@ -36,12 +36,14 @@ $ poetry shell
 $ python src/index.py
 ```
 
-### How to run user story tests
+### How to test
 
 ```bash
-$ poetry shell
-$ pip install robotframework
-$ robot src/tests
+# Run unit tests
+$ poetry run invoke test
+
+# Run user story tests
+$ poetry run invoke robot
 ```
 
 ## Documentation

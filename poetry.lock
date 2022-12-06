@@ -226,6 +226,14 @@ python-versions = ">=3.7"
 cli = ["click (>=5.0)"]
 
 [[package]]
+name = "robotframework"
+version = "6.0.1"
+description = "Generic automation framework for acceptance testing and robotic process automation (RPA)"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -251,8 +259,8 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.10"
-content-hash = "56df79b14e47c07ce7608129e306d25a18228a8feb3f6f01146cd0c7b53c6262"
+python-versions = "^3.10.0"
+content-hash = "ab34d0e304545e2a5b3d5708dca3d3d9ae8469c4916167f1205c1893cbc57f41"
 
 [metadata.files]
 astroid = []
@@ -292,6 +300,7 @@ pytest-dotenv = [
     {file = "pytest_dotenv-0.5.2-py3-none-any.whl", hash = "sha256:40a2cece120a213898afaa5407673f6bd924b1fa7eafce6bda0e8abffe2f710f"},
 ]
 python-dotenv = []
+robotframework = []
 tomli = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
