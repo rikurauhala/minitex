@@ -2,18 +2,31 @@ class ConsoleIO:
     """Module for user input."""
 
     def print(self, string):
-        """Prints the given string"""
         print(string)
 
     def input(self, string):
-        return input(string)
+        """Asks for a input and check if it's empty, if empty ask again
+
+        Returns:
+            string: input as a string
+        """
+        while True:
+            enter = input(string)
+            if enter:
+                return enter
+            self.print("Input can not be empty.")
 
     def input_int(self, string):
+        """Asks for a input and check if it's int
+
+        Returns:
+            int: input as an integer
+        """
         while True:
-            integer = input(string)
-            if integer.isnumeric():
-                return int(integer)
-            elif integer == "q":
+            enter = input(string)
+            if enter.isnumeric():
+                return int(enter)
+            elif enter.lower() == "q":
                 break
             self.print("Input must be an integer. ")
 
@@ -31,14 +44,14 @@ class ConsoleIO:
         Returns:
             dict: authors, title, year published and publisher as dict
         """
-
         authors = ""
         while True:
-            author = input("Input author in format lastname, firstname or input q to stop: ")
-            if author == "q":
-                if len(authors) > 0:
+            author = self.input(
+                "Input authors in format lastname, firstname (q to stop): ")
+            if author.lower() == "q":
+                if authors:
                     break
-                print("At least one author is required")
+                self.print("Atleast one author is required.")
             elif author and authors:
                 authors += " and " + author
             elif author:
@@ -46,6 +59,4 @@ class ConsoleIO:
         title = self.input("Input title: ")
         year = self.input_int("Input year published: ")
         publisher = self.input("Input publisher: ")
-        if authors and title and year and publisher:
-            return {"authors": authors, "title": title, "year": str(year), "publisher": publisher}
-        self.print("Something went wrong, did you fill all the fields?")
+        return {"authors": authors, "title": title, "year": str(year), "publisher": publisher}

@@ -17,7 +17,6 @@ class Application:
         self._clear_at_start = True
         if clear_at_start == False:
             self._clear_at_start = False
-
     def start(self):
         """Starts the main application loop."""
 
@@ -58,15 +57,14 @@ class Application:
     def _add_reference(self):
         """Adds a new reference."""
         reference = self._IO.get_reference()
-        if reference:
-            self._reference_service.add_reference(reference)
-            self._IO.print("Added a new reference.")
+        self._reference_service.add_reference(reference)
+        self._IO.print("Added a new reference.")
 
     def _export_references(self):
         """Exports the references to BibTeX."""
         if (self._file_writer.write_bibtex(self._reference_service.get_references())):
-            self._IO.print("References exported succesfully to " +
-                           self._file_writer.get_filepath())
+            self._IO.print("References exported to " +
+                           self._file_writer.get_filepath() + " succesfully.")
 
     def _show_references(self):
         """Prints all the references to the interface."""
@@ -78,7 +76,7 @@ class Application:
                 self._IO.print(f"{index}: {reference}")
                 index += 1
         else:
-            self._IO.print("No references have been added yet.")
+            self._IO.print("References have not been added yet.")
 
     def _delete_reference(self):
         """Deletes a single reference."""
