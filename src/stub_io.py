@@ -23,6 +23,15 @@ class StubIO:
             arguments before the app starts"""
         self.inputs.append(input)
 
+    def input_int(self, input):
+        integer = self.inputs.pop(0)
+        if integer.isnumeric():
+                return int(integer)
+        return 1
+
+    def input_integer(self, integer):
+        self.inputs.append(integer)
+
     def get_reference(self):
         """Gets information for reference (that robot test file put there in arguments) from the inputs list
 
