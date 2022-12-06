@@ -1,9 +1,9 @@
 class StubIO:
     """Module for simulating user input."""
 
-    def __init__(self, inputs = None):
+    def __init__(self, inputs=None):
         """Creates list for inputs that gets string inputs resource.robot arguments
-            Creates list for outputs that StubIO fills and robot framework test environment reads"""
+           Creates list for outputs that StubIO fills and robot framework test environment reads"""
         self.inputs = inputs or []
         self.outputs = []
 
@@ -15,25 +15,26 @@ class StubIO:
         """Takes preset command from inputs list when app asks for it"""
         if len(self.inputs) > 0:
             return self.inputs.pop(0)
-        else:
-            return ""
+        return ""
 
-    def give_command(self, input):
-        """Robot Framework uses AppLibrary (which uses this method) to fill command inputs with resource.robot 
-            arguments before the app starts"""
-        self.inputs.append(input)
+    def give_command(self, _input):
+        """Robot Framework uses AppLibrary (which uses this method) to fill
+        command inputs with resource.robot arguments before the app starts
+        """
+        self.inputs.append(_input)
 
-    def input_int(self, input):
+    def input_int(self):
         integer = self.inputs.pop(0)
         if integer.isnumeric():
-                return int(integer)
+            return int(integer)
         return 1
 
     def input_integer(self, integer):
         self.inputs.append(integer)
 
     def get_reference(self):
-        """Gets information for reference (that robot test file put there in arguments) from the inputs list
+        """Gets information for reference (that robot test file put there in arguments)
+        from the inputs list
 
         Returns:
             dict: authors, title, year published and publisher as dict

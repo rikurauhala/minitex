@@ -1,10 +1,11 @@
+#from pathlib import Path
+
 from stub_io import StubIO
-from utils.commands import COMMANDS
+#from utils.commands import COMMANDS
 from services.reference_service import ReferenceService
-from file_writer import FileWriter
+#from file_writer import FileWriter
 from app import Application
 from database import initialize_database
-from pathlib import Path
 
 
 class AppLibrary:
@@ -15,14 +16,14 @@ class AppLibrary:
         self._app = Application(self._io, False)
 
     def input(self, value):
-        """Test commands given in reference.robot (that are translated further with 
-            resource.robot keywords) in form "Input  x" are added here to app's 
+        """Test commands given in reference.robot (that are translated further with
+            resource.robot keywords) in form "Input  x" are added here to app's
             pre-start input list"""
         self._io.give_command(value)
 
     def output_should_contain(self, value):
-        """This Test command checks if the given value with command "Output Should Contain x" 
-            from reference.robot has same value as output list that was filled while app was running"""
+        """This Test command checks if the given value with command "Output Should Contain x"
+        from reference.robot has same value as output list that was filled while app was running"""
         outputs = self._io.outputs
 
         if not value in outputs:
@@ -39,12 +40,11 @@ class AppLibrary:
             )
 
     def export_message_should_contain(self, value):
-        
-        self._folder_path = Path("./data")
-        self._file_name = "references.bib"
+        #folder_path = Path("./data")
+        #file_name = "references.bib"
 
-        message = value.split("*")
-        part = message[0] + str(self._folder_path.joinpath(self._file_name).resolve())
+        #message = value.split("*")
+        #part = message[0] + str(self._folder_path.joinpath(self._file_name).resolve())
 
         outputs = self._io.outputs
 

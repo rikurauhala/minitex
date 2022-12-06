@@ -13,7 +13,7 @@ class ConsoleIO:
             integer = input(string)
             if integer.isnumeric():
                 return int(integer)
-            elif integer == "q":
+            if integer == "q":
                 break
             self.print("Input must be an integer. ")
 
