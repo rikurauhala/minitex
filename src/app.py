@@ -42,8 +42,8 @@ class Application:
                     index = 1
                     references = self._reference_service.get_references()
                     if references:
+                        self._IO.print("References: ")
                         for reference in references:
-                            self._IO.print("References: ")
                             self._IO.print(f"{index}: {reference}")
                             index += 1
                     else:
@@ -54,7 +54,7 @@ class Application:
                 case 'd':
                         id = self._IO.input_int("Enter the index of the reference you wish to delete: ")
                         references = self._reference_service.get_references()
-                        if len(references) < id or len(references) > id:
+                        if len(references) < id or id < 1:
                             self._IO.print("Not a valid index. ")
                         else:
                             self._reference_service.delete_reference(references[id - 1])
