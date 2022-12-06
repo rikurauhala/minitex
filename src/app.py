@@ -52,13 +52,14 @@ class Application:
                          if (self._file_writer.write_bibtex(self._reference_service.get_references())):
                             self._IO.print("References exported succesfully to " + self._file_writer.get_filepath()) 
                 case 'd':
-                        id = self._IO.input_int("Enter the index of the reference you wish to delete: ")
-                        references = self._reference_service.get_references()
-                        if len(references) < id or id < 1:
-                            self._IO.print("Not a valid index. ")
-                        else:
-                            self._reference_service.delete_reference(references[id - 1])
-                            self._IO.print("Reference deleted.")
+                        id = self._IO.input_int("Enter the index of the reference you wish to delete (q to quit): ")
+                        if id:
+                            references = self._reference_service.get_references()
+                            if len(references) < id or id < 1:
+                                self._IO.print("Not a valid index.")
+                            else:
+                                self._reference_service.delete_reference(references[id - 1])
+                                self._IO.print("Reference deleted.")
                 case _:
                     self._print_invalid_command()
 
