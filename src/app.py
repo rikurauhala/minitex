@@ -20,7 +20,8 @@ class Application:
     def start(self):
         """Starts the main application loop."""
 
-        """Clears terminal at start if no False is given at constructor"""
+        """Clears terminal at start if no False is given at app constructor 
+            (to make robot framework tests show everything)"""
         if self._clear_at_start == True:
             self._clear_console()
         self._print_commands()
