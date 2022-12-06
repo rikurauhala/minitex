@@ -13,6 +13,8 @@ class ConsoleIO:
             integer = input(string)
             if integer.isnumeric():
                 return int(integer)
+            elif integer == "q":
+                break
             self.print("Input must be an integer. ")
 
     def get_command(self):

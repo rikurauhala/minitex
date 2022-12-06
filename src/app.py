@@ -4,15 +4,16 @@ from utils.commands import COMMANDS
 from services.reference_service import ReferenceService
 from file_writer import FileWriter
 
+
 class Application:
     """The main application."""
 
-    def __init__(self, io, clear_at_start = None):
+    def __init__(self, io, clear_at_start=None):
         """Initializes a new instance of the application."""
         self._commands = COMMANDS
         self._IO = io
         self._reference_service = ReferenceService()
-        self._file_writer =FileWriter()
+        self._file_writer = FileWriter()
         self._clear_at_start = True
         if clear_at_start == False:
             self._clear_at_start = False
@@ -34,31 +35,13 @@ class Application:
                 case 'h':
                     self._print_commands()
                 case "n":
-                    reference = self._IO.get_reference()
-                    if reference:
-                        self._reference_service.add_reference(reference)
-                        self._IO.print("Added a new reference.")
+                    self._add_reference()
                 case 's':
-                    index = 1
-                    references = self._reference_service.get_references()
-                    if references:
-                        self._IO.print("References: ")
-                        for reference in references:
-                            self._IO.print(f"{index}: {reference}")
-                            index += 1
-                    else:
-                        self._IO.print("No references have been added yet.")
+                    self._show_references()
                 case 'e':
-                         if (self._file_writer.write_bibtex(self._reference_service.get_references())):
-                            self._IO.print("References exported succesfully to " + self._file_writer.get_filepath()) 
+                    self._export_references()
                 case 'd':
-                        id = self._IO.input_int("Enter the index of the reference you wish to delete: ")
-                        references = self._reference_service.get_references()
-                        if len(references) < id or id < 1:
-                            self._IO.print("Not a valid index. ")
-                        else:
-                            self._reference_service.delete_reference(references[id - 1])
-                            self._IO.print("Reference deleted.")
+                    self._delete_reference()
                 case _:
                     self._print_invalid_command()
 
@@ -71,6 +54,43 @@ class Application:
     def _print_invalid_command(self):
         """Prints a message signifying an invalid command."""
         self._IO.print("Invalid command!")
+
+    def _add_reference(self):
+        """Adds a new reference."""
+        reference = self._IO.get_reference()
+        if reference:
+            self._reference_service.add_reference(reference)
+            self._IO.print("Added a new reference.")
+
+    def _export_references(self):
+        """Exports the references to BibTeX."""
+        if (self._file_writer.write_bibtex(self._reference_service.get_references())):
+            self._IO.print("References exported succesfully to " +
+                           self._file_writer.get_filepath())
+
+    def _show_references(self):
+        """Prints all the references to the interface."""
+        index = 1
+        references = self._reference_service.get_references()
+        if references:
+            self._IO.print("References: ")
+            for reference in references:
+                self._IO.print(f"{index}: {reference}")
+                index += 1
+        else:
+            self._IO.print("No references have been added yet.")
+
+    def _delete_reference(self):
+        """Deletes a single reference."""
+        id = self._IO.input_int(
+            "Enter the index of the reference you wish to delete (q to quit): ")
+        if id:
+            references = self._reference_service.get_references()
+            if len(references) < id or id < 1:
+                self._IO.print("Not a valid index.")
+            else:
+                self._reference_service.delete_reference(references[id - 1])
+                self._IO.print("Reference deleted.")
 
     def _clear_console(self):
         """Clears the console."""
