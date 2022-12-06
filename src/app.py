@@ -7,17 +7,22 @@ from file_writer import FileWriter
 class Application:
     """The main application."""
 
-    def __init__(self, io):
+    def __init__(self, io, clear_at_start = None):
         """Initializes a new instance of the application."""
         self._commands = COMMANDS
         self._IO = io
         self._reference_service = ReferenceService()
         self._file_writer =FileWriter()
+        self._clear_at_start = True
+        if clear_at_start == False:
+            self._clear_at_start = False
 
     def start(self):
         """Starts the main application loop."""
 
-        self._clear_console()
+        """Clears terminal at start if no False is given at constructor"""
+        if self._clear_at_start == True:
+            self._clear_console()
         self._print_commands()
 
         while True:
