@@ -36,8 +36,8 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("h")
         self.app._IO.give_command("q")
         self.app.start()
-        command1 = self.app._IO.printitems[8]
-        self.assertEqual(command1, "[ q ] quit")
+        command = self.app._IO.printitems[8]
+        self.assertEqual(str(command), "[ q ] quit")
 
     def test_adds_reference(self):
         self.app._IO.give_command("n")

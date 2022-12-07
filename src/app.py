@@ -1,6 +1,6 @@
 from os import name, system
 
-from utils.commands import Print, Add, Show, Export, Delete
+from utils.commands import Print, Add, Show, Export, Delete, Quit
 from services.reference_service import ReferenceService
 from file_writer import FileWriter
 
@@ -10,7 +10,7 @@ class Application:
 
     def __init__(self, io, clear_at_start=None):
         """Initializes a new instance of the application."""
-        self._commands = {"h": Print(self), "n": Add(self), "s": Show(self),
+        self._commands = {"q": Quit(), "h": Print(self), "n": Add(self), "s": Show(self),
                           "e": Export(self), "d": Delete(self)}
         self._IO = io
         self._reference_service = ReferenceService()
@@ -27,13 +27,11 @@ class Application:
         if self._clear_at_start == True:
             self._clear_console()
         self._print_commands()
-
         while True:
-            command = self._IO.get_command()
-            if command != "q":
-                function = self._commands.get(command)
-                if function:
-                    function.run()
+            command = self._commands.get(self._IO.get_command())
+            if not isinstance(command, Quit):
+                if command:
+                    command.run()
                 else:
                     self._print_invalid_command()
             else:

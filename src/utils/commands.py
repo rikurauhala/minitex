@@ -51,3 +51,7 @@ class Delete():
 
     def run(self):
         return self.app._delete_reference()
+
+class Quit():
+    def __str__(self):
+        return "[ q ] quit"
