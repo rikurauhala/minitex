@@ -11,7 +11,7 @@ def validate_attribute_string(to_validate: str, attribute: str) -> bool:
 
     if not isinstance(to_validate, str):
         raise TypeError(f"Expected {attribute} of value str, instead got: ",
-            type(to_validate))
+                        type(to_validate))
     if not to_validate:
         raise ValueError(f"{attribute} cannot be empty")
 

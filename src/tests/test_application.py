@@ -13,6 +13,7 @@ class IOStub:
             "publisher": "Otava"
         }
         self.printitems = []
+        self.indx = 1
 
     def get_command(self):
         print(self.command)
@@ -26,6 +27,10 @@ class IOStub:
 
     def print(self, item):
         self.printitems.append(item)
+    
+    def input_check_int(self, message):
+        return self.indx
+
 
 class TestApplication(unittest.TestCase):
     def setUp(self):
@@ -36,11 +41,12 @@ class TestApplication(unittest.TestCase):
         self.app._IO.give_command("h")
         self.app._IO.give_command("q")
         self.app.start()
-        command1 = self.app._IO.printitems[8]
-        self.assertEqual(command1, "[ q ] quit")
+        command = self.app._IO.printitems[8]
+        self.assertEqual(str(command), "[ q ] quit")
 
     def test_adds_reference(self):
         self.app._IO.give_command("n")
+        self.app._IO.give_command("d")
         self.app._IO.give_command("q")
         self.app.start()
         message = self.app._IO.printitems[7]
@@ -49,6 +55,7 @@ class TestApplication(unittest.TestCase):
     def test_prints_references(self):
         self.app._IO.give_command("n")
         self.app._IO.give_command("s")
+        self.app._IO.give_command("d")
         self.app._IO.give_command("q")
         self.app.start()
         reference = self.app._IO.printitems[9]
@@ -57,6 +64,7 @@ class TestApplication(unittest.TestCase):
 
     def test_invalid_command(self):
         self.app._IO.give_command("x")
+        self.app._IO.give_command("d")
         self.app._IO.give_command("q")
         self.app.start()
         message = self.app._IO.printitems[7]

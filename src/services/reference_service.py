@@ -45,3 +45,5 @@ class ReferenceService:
 
     def delete_reference(self, reference):
         self._reference_repository.delete(reference)
+        self._references = []
+        self._import_all_references_to_memory()

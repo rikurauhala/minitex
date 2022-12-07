@@ -19,9 +19,9 @@ class ConsoleIO:
             enter = input(string)
             if enter:
                 return enter
-            self.print("Input can not be empty.")
+            self.print("Input can not be empty, try again.")
 
-    def input_int(self, string):
+    def input_check_int(self, string):
         """Asks for a input and check if it's an integer.
 
         Returns:
@@ -30,10 +30,10 @@ class ConsoleIO:
         while True:
             integer = input(string)
             if integer.isnumeric():
-                return int(integer)
+                return integer
             if integer == "q":
                 break
-            self.print("Input must be an integer.")
+            self.print("Input must be an integer, try again.")
 
     def get_command(self):
         """Asks for a command from the user.
@@ -61,12 +61,12 @@ class ConsoleIO:
             elif author:
                 authors += author
         title = self.input("Input title: ")
-        year = self.input_int("Input year published: ")
+        year = self.input_check_int("Input year published: ")
         publisher = self.input("Input publisher: ")
         reference = {
             "authors": authors,
             "title": title,
-            "year": str(year),
+            "year": year,
             "publisher": publisher
         }
         return reference
