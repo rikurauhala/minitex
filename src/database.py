@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-from config import DATABASE_FILE_PATH
+from config import DATABASE_FILE_PATH, DATA_FOLDER_PATH
 
 
 def get_database_connection():
@@ -10,11 +10,13 @@ def get_database_connection():
     Returns:
         connection (Connection): Database connection object.
     """
+    check_if_path_exists()
     connection = sqlite3.connect(
         DATABASE_FILE_PATH,
         detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
     )
     connection.row_factory = sqlite3.Row
+    check_if_table_exists(connection)
     return connection
 
 
@@ -48,6 +50,20 @@ def create_tables(connection):
         )"""
     )
     connection.commit()
+
+def check_if_path_exists():
+    if not os.path.isdir(DATA_FOLDER_PATH):
+        current_directory = os.path.dirname(__file__)
+        os.makedirs(os.path.join(current_directory, "..", "data"), exist_ok=True)
+
+def check_if_table_exists(connection):
+    cursor = connection.cursor()
+    tables = cursor.execute("""
+        SELECT name FROM sqlite_master WHERE type='table' AND name='bookreferences'
+        """
+    )
+    if len(tables.fetchall()) == 0:
+        create_tables(connection)
 
 
 def initialize_database():
