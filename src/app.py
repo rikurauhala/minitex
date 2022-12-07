@@ -73,12 +73,14 @@ class Application:
 
     def delete_reference(self):
         """Deletes a single reference."""
-        id = self._IO.input_int(
-            "Enter the index of the reference you wish to delete (q to quit): ")
+        id = self._IO.input_check_int(
+            "Enter the index of the reference you wish to delete (q to cancel): ")
+        references = self._reference_service.get_references()
         if id:
-            references = self._reference_service.get_references()
-            if len(references) < id or id < 1:
-                self._IO.print("Not a valid index.")
+            id = int(id)
+            if not id or len(references) < id:
+                self._IO.print("Not a valid index, try again.")
+                return self.delete_reference()
             else:
                 self._reference_service.delete_reference(references[id - 1])
                 self._IO.print("Reference deleted.")
