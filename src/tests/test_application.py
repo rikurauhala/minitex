@@ -27,6 +27,7 @@ class IOStub:
     def print(self, item):
         self.printitems.append(item)
 
+
 class TestApplication(unittest.TestCase):
     def setUp(self):
         self.IO = IOStub()
