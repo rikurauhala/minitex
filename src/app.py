@@ -79,8 +79,7 @@ class Application:
         if id:
             id = int(id)
             if not id or len(references) < id:
-                self._IO.print("Not a valid index, try again.")
-                return self.delete_reference()
+                self._IO.print("Not a valid index.")
             else:
                 self._reference_service.delete_reference(references[id - 1])
                 self._IO.print("Reference deleted.")

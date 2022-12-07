@@ -28,7 +28,7 @@ class IOStub:
     def print(self, item):
         self.printitems.append(item)
     
-    def input_int(self, message):
+    def input_check_int(self, message):
         return self.indx
 
 
