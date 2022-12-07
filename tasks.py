@@ -2,11 +2,6 @@ from invoke import task
 
 
 @task
-def build(ctx):
-    ctx.run("python src/database.py", pty=True)
-
-
-@task
 def start(ctx):
     ctx.run("python src/index.py", pty=True)
 
