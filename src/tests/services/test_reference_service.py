@@ -29,11 +29,12 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(stored_ref.year, self.reference1["year"])
         self.assertEqual(stored_ref.publisher, self.reference1["publisher"])
 
+
     def test_adds_multiple_references(self):
         self.repository.add_reference(self.reference1)
         self.repository.add_reference(self.reference2)
-        stored_ref1 = self.repository.get_references()[2]
-        stored_ref2 = self.repository.get_references()[3]
+        stored_ref1 = self.repository.get_references()[0]
+        stored_ref2 = self.repository.get_references()[1]
         self.assertEqual(stored_ref1.author, self.reference1["authors"])
         self.assertEqual(stored_ref1.title, self.reference1["title"])
         self.assertEqual(stored_ref1.year, self.reference1["year"])
