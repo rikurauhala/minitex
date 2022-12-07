@@ -1,6 +1,6 @@
 from os import name, system
 
-from utils.commands import COMMANDS
+from utils.commands import Print, Add, Show, Export, Delete
 from services.reference_service import ReferenceService
 from file_writer import FileWriter
 
@@ -10,13 +10,15 @@ class Application:
 
     def __init__(self, io, clear_at_start=None):
         """Initializes a new instance of the application."""
-        self._commands = COMMANDS
+        self._commands = {"h": Print(self), "n": Add(self), "s": Show(self),
+                          "e": Export(self), "d": Delete(self)}
         self._IO = io
         self._reference_service = ReferenceService()
         self._file_writer = FileWriter()
         self._clear_at_start = True
         if clear_at_start == False:
             self._clear_at_start = False
+
     def start(self):
         """Starts the main application loop."""
 
@@ -28,27 +30,20 @@ class Application:
 
         while True:
             command = self._IO.get_command()
-            match command:
-                case 'q':
-                    break
-                case 'h':
-                    self._print_commands()
-                case "n":
-                    self._add_reference()
-                case 's':
-                    self._show_references()
-                case 'e':
-                    self._export_references()
-                case 'd':
-                    self._delete_reference()
-                case _:
+            if command != "q":
+                function = self._commands.get(command)
+                if function:
+                    function.run()
+                else:
                     self._print_invalid_command()
+            else:
+                break
 
     def _print_commands(self):
         """Prints a list of available commands."""
         self._IO.print("Commands:")
-        for command in self._commands.items():
-            self._IO.print(command[1])
+        for command in self._commands.values():
+            self._IO.print(command)
 
     def _print_invalid_command(self):
         """Prints a message signifying an invalid command."""
