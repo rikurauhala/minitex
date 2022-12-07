@@ -1,14 +1,19 @@
 class ConsoleIO:
-    """Module for user input."""
+    """Module for user input and output."""
 
     def print(self, string):
+        """Prints a given string to the console.
+
+        Args:
+            string: The string to be printed.
+        """
         print(string)
 
     def input(self, string):
-        """Asks for a input and check if it's empty, if empty ask again
+        """Asks for a input and check if it's empty, if empty asks again.
 
         Returns:
-            string: input as a string
+            string: Input as a string.
         """
         while True:
             enter = input(string)
@@ -17,7 +22,7 @@ class ConsoleIO:
             self.print("Input can not be empty.")
 
     def input_int(self, string):
-        """Asks for a input and check if it's int
+        """Asks for a input and check if it's an integer.
 
         Returns:
             int: input as an integer
@@ -28,30 +33,29 @@ class ConsoleIO:
                 return int(integer)
             if integer == "q":
                 break
-            self.print("Input must be an integer. ")
+            self.print("Input must be an integer.")
 
     def get_command(self):
-        """Asks command from the user
+        """Asks for a command from the user.
 
         Returns:
-            str: lower case command as str
+            str: Lowercase command as a string.
         """
         return input("Input command: ").lower()
 
     def get_reference(self):
-        """Asks reference from the user
+        """Asks for a reference from the user.
 
         Returns:
-            dict: authors, title, year published and publisher as dict
+            dict: authors, title, year published and publisher as dict.
         """
         authors = ""
         while True:
-            author = self.input(
-                "Input authors in format lastname, firstname (q to stop): ")
+            author = self.input("Input authors in format lastname, firstname (q to stop): ")
             if author.lower() == "q":
                 if authors:
                     break
-                self.print("Atleast one author is required.")
+                self.print("At least one author is required.")
             elif author and authors:
                 authors += " and " + author
             elif author:
@@ -59,4 +63,10 @@ class ConsoleIO:
         title = self.input("Input title: ")
         year = self.input_int("Input year published: ")
         publisher = self.input("Input publisher: ")
-        return {"authors": authors, "title": title, "year": str(year), "publisher": publisher}
+        reference = {
+            "authors": authors,
+            "title": title,
+            "year": str(year),
+            "publisher": publisher
+        }
+        return reference
