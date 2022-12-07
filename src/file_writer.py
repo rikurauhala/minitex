@@ -2,11 +2,13 @@ from pathlib import Path
 
 
 class FileWriter:
-    """Class for writing Bibtex files
-    """
+    """Class for writing Bibtex files."""
 
-    def __init__(self, folder_path: str = None) -> None:
-        """Create filewriter instance
+    def __init__(self, folder_path: str=None) -> None:
+        """Creates a new instance of FileWriter.
+
+        Args:
+            folder_path (str, optional): Defaults to None.
         """
         if folder_path is None:
             self._folder_path = Path("./data")
@@ -16,23 +18,23 @@ class FileWriter:
         self._file_name = "references.bib"
 
     def get_filepath(self) -> str:
-        """Get the filepath as an absolute path to the references.bib
+        """Gets the filepath as an absolute path to the references.bib.
 
         Return:
-            str: get the filepath as a string
+            str: The filepath as a string.
         """
         return str(self._folder_path.joinpath(self._file_name).resolve())
 
     def _make_entry_string(self, ref: dict) -> str:
-        """Create entry string from reference to be saved in Bibtex file
+        """Creates an entry string from reference to be saved into a Bibtex file.
 
         Return:
-            str: entry to save in the file
+            str: Entry to save into the file
         """
-        if 'type' not in ref:
+        if "type" not in ref:
             ref_type = "@BOOK"
         else:
-            ref_type = ref['type']
+            ref_type = ref["type"]
 
         return f"""{ref_type}{"{"}{ref['key']},
     title = "{ref['title']}",
@@ -43,8 +45,7 @@ class FileWriter:
 """
 
     def write_bibtex(self, references: list) -> bool:
-        """Write given list of reference objects to a Bibtex file
-        """
+        """Writes a given list of reference objects into a Bibtex file."""
         file_path = self._folder_path.joinpath(self._file_name)
 
         try:
@@ -57,5 +58,5 @@ class FileWriter:
                 return True
 
         except OSError as exc:
-            raise TypeError('Expected directory to be a valid path, instead got: ',
+            raise TypeError("Expected directory to be a valid path, instead got: ",
                             file_path) from exc
