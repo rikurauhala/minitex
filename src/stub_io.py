@@ -1,9 +1,9 @@
 class StubIO:
     """Module for simulating user input."""
 
-    def __init__(self, inputs=None):
+    def __init__(self, inputs = None):
         """Creates list for inputs that gets string inputs resource.robot arguments
-           Creates list for outputs that StubIO fills and robot framework test environment reads"""
+        Creates list for outputs that StubIO fills and robot framework test environment reads"""
         self.inputs = inputs or []
         self.outputs = []
 
@@ -17,13 +17,13 @@ class StubIO:
             return self.inputs.pop(0)
         return ""
 
-    def give_command(self, _input):
-        """Robot Framework uses AppLibrary (which uses this method) to fill
-        command inputs with resource.robot arguments before the app starts
-        """
-        self.inputs.append(_input)
+    def give_command(self, command_input):
+        """Robot Framework uses AppLibrary (which uses this method) to fill command inputs
+        with resource.robot arguments before the app starts"""
+        self.inputs.append(command_input)
 
-    def input_int(self):
+    # pylint: disable=unused-argument
+    def input_int(self, command_input):
         integer = self.inputs.pop(0)
         if integer.isnumeric():
             return int(integer)
@@ -39,7 +39,6 @@ class StubIO:
         Returns:
             dict: authors, title, year published and publisher as dict
         """
-
         authors = ""
         while True:
             author = self.inputs.pop(0)

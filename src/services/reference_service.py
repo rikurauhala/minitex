@@ -9,6 +9,8 @@ class ReferenceService:
     def __init__(self):
         """Initializes a new ReferenceService."""
         self._reference_repository = reference_repository
+        self._references = []
+        self._import_all_references_to_memory()
 
     def add_reference(self, reference):
         """Adds one reference to the reference repository."""
@@ -19,6 +21,7 @@ class ReferenceService:
             reference["publisher"]
         )
         self._reference_repository.create(new_reference)
+        self._references.append(new_reference)
 
     def get_references(self):
         """Fetches a list of references in a readable form.
@@ -26,7 +29,11 @@ class ReferenceService:
         Returns:
             list: Returns a list of references as strings.
         """
-        references = []
+        return self._references
+
+    def _import_all_references_to_memory(self):
+        """Imports all references from database to a list kept in ReferenceService
+        """
         for reference in self._reference_repository.find_all():
             reference_object = Reference(
                 reference[1],
@@ -34,8 +41,7 @@ class ReferenceService:
                 str(reference[3]),
                 reference[4]
             )
-            references.append(reference_object)
-        return references
+            self._references.append(reference_object)
 
     def delete_reference(self, reference):
         self._reference_repository.delete(reference)

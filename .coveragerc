@@ -6,6 +6,8 @@ omit = src/**/__init__.py
        src/app.py
        src/index.py
        src/console_io.py
+       src/AppLibrary.py
+       src/stub_io.py
 
 [report]
 source = src
@@ -15,3 +17,5 @@ omit = src/**/__init__.py
        src/app.py
        src/index.py
        src/console_io.py
+       src/AppLibrary.py
+       src/stub_io.py
