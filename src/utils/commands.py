@@ -6,7 +6,7 @@ class Print():
         return "[ h ] print all the commands"
 
     def run(self):
-        return self.app._print_commands()
+        return self.app.print_commands()
 
 
 class Add():
@@ -17,7 +17,7 @@ class Add():
         return "[ n ] add a new reference"
 
     def run(self):
-        return self.app._add_reference()
+        return self.app.add_reference()
 
 
 class Show():
@@ -28,7 +28,7 @@ class Show():
         return "[ s ] show all references"
 
     def run(self):
-        return self.app._show_references()
+        return self.app.show_references()
 
 
 class Export():
@@ -39,7 +39,7 @@ class Export():
         return "[ e ] export the references to a BibTeX file"
 
     def run(self):
-        return self.app._export_references()
+        return self.app.export_references()
 
 
 class Delete():
@@ -50,7 +50,7 @@ class Delete():
         return "[ d ] delete a reference"
 
     def run(self):
-        return self.app._delete_reference()
+        return self.app.delete_reference()
 
 
 class Quit():
