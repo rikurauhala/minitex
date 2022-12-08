@@ -23,7 +23,7 @@ class StubIO:
         self.inputs.append(command_input)
 
     # pylint: disable=unused-argument
-    def input_int(self, command_input):
+    def input_check_int(self, command_input):
         integer = self.inputs.pop(0)
         if integer.isnumeric():
             return int(integer)

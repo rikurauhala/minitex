@@ -29,7 +29,7 @@ Store References In Database
     Input Quit Command
     Run Application
     Output Should Contain  1: Philip Pullman | Kultainen Kompassi | Tammi (1996)
-    Output Should Contain  2: George R. R. Martin | Tuf Voyaging | Meisha Merlin (2003)
+    Output Should Contain  3: George R. R. Martin | Tuf Voyaging | Meisha Merlin (2003)
 
 Delete References In Database
     Input New Reference Command
@@ -57,4 +57,3 @@ Export References Into Bibtex File
 *** Keywords ***
 Clear Database
     Format Database
-        
