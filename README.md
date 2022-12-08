@@ -7,6 +7,10 @@ Ohjelmistotuotanto-kurssin miniprojekti | Helsingin yliopisto | Syksy 2022
 ![Continuous Integration](https://github.com/rikurauhala/minitex/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/rikurauhala/minitex/branch/main/graph/badge.svg?token=MIVVZGAX67)](https://codecov.io/gh/rikurauhala/minitex)
 
+## Releases
+
+- [Sprint 2](https://github.com/rikurauhala/minitex/releases/tag/sprint2)
+
 ## Instructions
 
 ### How to install
