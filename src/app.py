@@ -1,6 +1,6 @@
 from os import name, system
 
-from utils.commands import Print, Add, Show, Export, Delete, Quit
+from utils.commands import Print, Add, AddDoi, Show, Export, Delete, Quit
 from services.reference_service import ReferenceService
 from file_writer import FileWriter
 
@@ -10,8 +10,15 @@ class Application:
 
     def __init__(self, io, clear_at_start=None):
         """Initializes a new instance of the application."""
-        self._commands = {"q": Quit(), "h": Print(self), "n": Add(self), "s": Show(self),
-                          "e": Export(self), "d": Delete(self)}
+        self._commands = {
+            "q": Quit(),
+            "h": Print(self),
+            "n": Add(self),
+            "o": AddDoi(self),
+            "s": Show(self),
+            "e": Export(self),
+            "d": Delete(self)
+        }
         self._IO = io
         self._reference_service = ReferenceService()
         self._file_writer = FileWriter()
@@ -50,6 +57,12 @@ class Application:
     def add_reference(self):
         """Adds a new reference."""
         reference = self._IO.get_reference()
+        self._reference_service.add_reference(reference)
+        self._IO.print("Added a new reference.")
+
+    def add_reference_from_doi(self):
+        """Adds a new reference."""
+        reference = self._IO.get_reference_from_doi()
         self._reference_service.add_reference(reference)
         self._IO.print("Added a new reference.")
 
