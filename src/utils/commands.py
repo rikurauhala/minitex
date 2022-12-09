@@ -20,6 +20,17 @@ class Add():
         return self.app.add_reference()
 
 
+class AddDoi():
+    def __init__(self, app):
+        self.app = app
+
+    def __str__(self):
+        return "[ o ] add a new reference based based on DOI"
+
+    def run(self):
+        return self.app.add_reference_from_doi()
+
+
 class Show():
     def __init__(self, app):
         self.app = app
