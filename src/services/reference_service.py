@@ -47,3 +47,8 @@ class ReferenceService:
         self._reference_repository.delete(reference)
         self._references = []
         self._import_all_references_to_memory()
+
+    def edit_reference(self, value, indx, column):
+        self._reference_repository.edit(value, indx, column)
+        self._references = []
+        self._import_all_references_to_memory()
