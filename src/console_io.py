@@ -1,3 +1,6 @@
+import crossref_commons.retrieval as ccr
+
+
 class ConsoleIO:
     """Module for user input and output."""
 
@@ -67,6 +70,27 @@ class ConsoleIO:
             "authors": authors,
             "title": title,
             "year": year,
+            "publisher": publisher
+        }
+        return reference
+
+    def get_reference_from_doi(self, doi="10.1007/3-540-45471-3"):
+        reference = ccr.get_publication_as_json(doi)
+        #type = reference["type"]
+        year = reference["published-online"]["date-parts"][0][0]
+        editors = reference["editor"]
+        authors_list = []
+        for author in editors:
+            first = author["given"]
+            last = author["family"]
+            authors_list.append(f"{first} {last}")
+        authors = " and ".join(authors_list)
+        title = reference["title"][0]
+        publisher = reference["publisher"]
+        reference = {
+            "authors": authors,
+            "title": title,
+            "year": str(year),
             "publisher": publisher
         }
         return reference
