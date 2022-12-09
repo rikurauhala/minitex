@@ -61,7 +61,7 @@ class Application:
         self._IO.print("Added a new reference.")
 
     def add_reference_from_doi(self):
-        """Adds a new reference."""
+        """Adds a new reference from DOI."""
         reference = self._IO.get_reference_from_doi()
         self._reference_service.add_reference(reference)
         self._IO.print("Added a new reference.")
