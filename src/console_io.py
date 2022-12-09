@@ -75,6 +75,11 @@ class ConsoleIO:
         return reference
 
     def get_reference_from_doi(self):
+        """Asks for a DOI from the user.
+
+        Returns:
+            dict: authors, title, year published and publisher as dict.
+        """
         while True:
             try:
                 doi = input("Insert a valid DOI: ")
@@ -82,7 +87,10 @@ class ConsoleIO:
             except ValueError:
                 self.print("Invalid DOI. Try again.")
                 continue
-            #type = reference["type"]
+            reference_type = reference["type"]
+            if reference_type != "book":
+                self.print("Reference must be a book. Try again.")
+                continue
             year = reference["published-online"]["date-parts"][0][0]
             editors = reference["editor"]
             authors_list = []
