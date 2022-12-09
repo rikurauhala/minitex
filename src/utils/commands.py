@@ -71,7 +71,7 @@ class Quit():
 class Edit():
     def __init__(self, app):
         self.app = app
-    
+
     def __str__(self):
         return "[ u ] edit a reference"
 
