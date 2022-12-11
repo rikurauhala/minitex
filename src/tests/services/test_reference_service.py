@@ -7,6 +7,7 @@ from services.reference_service import ReferenceService
 class TestReferenceRepository(unittest.TestCase):
     def setUp(self):
         self.repository = ReferenceService()
+        self.repository.delete_all()
         self.database = reference_repository
         self.reference1 = {
             "authors": "Doe, John and Caesar, Julius",
@@ -29,7 +30,6 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(stored_ref.year, self.reference1["year"])
         self.assertEqual(stored_ref.publisher, self.reference1["publisher"])
 
-
     def test_adds_multiple_references(self):
         self.repository.add_reference(self.reference1)
         self.repository.add_reference(self.reference2)
@@ -43,3 +43,13 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(stored_ref2.title, self.reference2["title"])
         self.assertEqual(stored_ref2.year, self.reference2["year"])
         self.assertEqual(stored_ref2.publisher, self.reference2["publisher"])
+
+    def test_delete_all(self):
+        references = self.repository.get_references()
+        self.assertEqual(len(references), 0)
+        self.repository.add_reference(self.reference1)
+        references = self.repository.get_references()
+        self.assertEqual(len(references), 1)
+        self.repository.delete_all()
+        references = self.repository.get_references()
+        self.assertEqual(len(references), 0)

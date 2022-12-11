@@ -55,6 +55,7 @@ class ReferenceService:
     def delete_all(self):
         """Deletes all references."""
         self._reference_repository.delete_all()
+        self._references = []
 
     def edit_reference(self, new_value, index, column):
         """Edits a reference.
