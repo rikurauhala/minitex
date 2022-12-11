@@ -99,8 +99,10 @@ class Application:
                 self._IO.print("Reference deleted.")
 
     def edit_reference(self):
+        """Edits a reference."""
         id = self._IO.input_check_int(
-            "Enter the index of the reference you wish to edit (q to cancel): ")
+            "Enter the index of the reference you wish to edit (q to cancel): "
+        )
         references = self._reference_service.get_references()
         if id:
             id = int(id)
@@ -108,10 +110,10 @@ class Application:
                 self._IO.print("Not a valid index.")
             else:
                 column = self._IO.input_check_int(
-                "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: ")
-                value = self._IO.input(
-                "Enter a new value: ")
-                self._reference_service.edit_reference(value, id, int(column))
+                "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
+                )
+                new_value = self._IO.input("Enter a new value: ")
+                self._reference_service.edit_reference(new_value, id, int(column))
                 self._IO.print("Reference edited.")
 
     def clear_console(self):

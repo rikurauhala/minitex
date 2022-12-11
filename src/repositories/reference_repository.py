@@ -36,13 +36,14 @@ class ReferenceRepository:
         references = self._cursor.execute("SELECT * FROM bookreferences")
         return references
 
-    def delete(self, reference):
-        self._cursor.execute(
-            "DELETE FROM bookreferences WHERE author=? AND title=?  AND year=? AND publisher=?",
-            (reference.author, reference.title, reference.year, reference.publisher))
-        self._connection.commit()
+    def edit(self, new_value, index, column):
+        """Edits a reference in the database.
 
-    def edit(self, value, indx, column):
+        Args:
+            new_value (string): New value to replace the old.
+            index (integer): Index of the reference to be edited.
+            column (integer): 1: author, 2: title, 3: year, 4: publisher.
+        """
         query = "UPDATE bookreferences set "
         if column == 1:
             query += "author = ? WHERE ID = ?"
@@ -53,8 +54,24 @@ class ReferenceRepository:
         else:
             query += "publisher = ? WHERE ID = ?"
         self._cursor.execute(
-            query, (value, indx)
+            query, (new_value, index)
         )
+        self._connection.commit()
+
+    def delete(self, reference):
+        """Deletes a reference from the database.
+
+        Args:
+            reference (Reference): The reference to be deleted.
+        """
+        self._cursor.execute(
+            "DELETE FROM bookreferences WHERE author=? AND title=? AND year=? AND publisher=?",
+            (reference.author, reference.title, reference.year, reference.publisher))
+        self._connection.commit()
+
+    def delete_all(self):
+        """Deletes all references from the database."""
+        self._cursor.execute("DELETE FROM bookreferences")
         self._connection.commit()
 
 

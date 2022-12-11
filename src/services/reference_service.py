@@ -32,8 +32,7 @@ class ReferenceService:
         return self._references
 
     def _import_all_references_to_memory(self):
-        """Imports all references from database to a list kept in ReferenceService
-        """
+        """Imports all references from database to a list kept in ReferenceService."""
         for reference in self._reference_repository.find_all():
             reference_object = Reference(
                 reference[1],
@@ -44,11 +43,27 @@ class ReferenceService:
             self._references.append(reference_object)
 
     def delete_reference(self, reference):
+        """Deletes a reference.
+
+        Args:
+            reference (Reference): A reference to be deleted.
+        """
         self._reference_repository.delete(reference)
         self._references = []
         self._import_all_references_to_memory()
 
-    def edit_reference(self, value, indx, column):
-        self._reference_repository.edit(value, indx, column)
+    def delete_all(self):
+        """Deletes all references."""
+        self._reference_repository.delete_all()
+
+    def edit_reference(self, new_value, index, column):
+        """Edits a reference.
+
+        Args:
+            new_value (string): New value to replace the old.
+            index (integer): Index of the reference to be edited.
+            column (integer): 1: author, 2: title, 3: year, 4: publisher.
+        """
+        self._reference_repository.edit(new_value, index, column)
         self._references = []
         self._import_all_references_to_memory()
