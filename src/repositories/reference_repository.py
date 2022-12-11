@@ -42,5 +42,20 @@ class ReferenceRepository:
             (reference.author, reference.title, reference.year, reference.publisher))
         self._connection.commit()
 
+    def edit(self, value, indx, column):
+        query = "UPDATE bookreferences set "
+        if column == 1:
+            query += "author = ? WHERE ID = ?"
+        elif column == 2:
+            query += "title = ? WHERE ID = ?"
+        elif column == 3:
+            query += "year = ? WHERE ID = ?"
+        else:
+            query += "publisher = ? WHERE ID = ?"
+        self._cursor.execute(
+            query, (value, indx)
+        )
+        self._connection.commit()
+
 
 reference_repository = ReferenceRepository(get_database_connection())

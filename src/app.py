@@ -1,6 +1,6 @@
 from os import name, system
 
-from utils.commands import Print, Add, AddDoi, Show, Export, Delete, Quit
+from utils.commands import Print, Add, AddDoi, Show, Export, Delete, Quit, Edit
 from services.reference_service import ReferenceService
 from file_writer import FileWriter
 
@@ -17,7 +17,8 @@ class Application:
             "o": AddDoi(self),
             "s": Show(self),
             "e": Export(self),
-            "d": Delete(self)
+            "d": Delete(self),
+            "u": Edit(self)
         }
         self._IO = io
         self._reference_service = ReferenceService()
@@ -96,6 +97,22 @@ class Application:
             else:
                 self._reference_service.delete_reference(references[id - 1])
                 self._IO.print("Reference deleted.")
+
+    def edit_reference(self):
+        id = self._IO.input_check_int(
+            "Enter the index of the reference you wish to edit (q to cancel): ")
+        references = self._reference_service.get_references()
+        if id:
+            id = int(id)
+            if not id or len(references) < id:
+                self._IO.print("Not a valid index.")
+            else:
+                column = self._IO.input_check_int(
+                "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: ")
+                value = self._IO.input(
+                "Enter a new value: ")
+                self._reference_service.edit_reference(value, id, int(column))
+                self._IO.print("Reference edited.")
 
     def clear_console(self):
         """Clears the console."""
