@@ -41,7 +41,7 @@ class Application:
                 if command:
                     command.run()
                 else:
-                    self.print_invalid_command()
+                    self._IO.print("Invalid command!")
             else:
                 break
 
@@ -50,10 +50,6 @@ class Application:
         self._IO.print("Commands:")
         for command in self._commands.values():
             self._IO.print(command)
-
-    def print_invalid_command(self):
-        """Prints a message signifying an invalid command."""
-        self._IO.print("Invalid command!")
 
     def add_reference(self):
         """Adds a new reference."""
