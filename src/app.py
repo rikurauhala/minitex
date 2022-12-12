@@ -109,9 +109,13 @@ class Application:
             if not id or len(references) < id:
                 self._IO.print("Not a valid index.")
             else:
-                column = self._IO.input_check_int(
-                "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
-                )
+                message = "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
+                while True:
+                    column = self._IO.input_check_int(message)
+                    if int(column) >= 1 and int(column) <= 4:
+                        break
+                    else:
+                        self._IO.print("Invalid input.")
                 new_value = self._IO.input("Enter a new value: ")
                 self._reference_service.edit_reference(new_value, id, int(column))
                 self._IO.print("Reference edited.")
