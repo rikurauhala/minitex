@@ -41,7 +41,7 @@ class Application:
                 if command:
                     command.run()
                 else:
-                    self.print_invalid_command()
+                    self._IO.print("Invalid command!")
             else:
                 break
 
@@ -51,10 +51,13 @@ class Application:
         for command in self._commands.values():
             self._IO.print(command)
 
+<<<<<<< HEAD
     def print_invalid_command(self):
         """Prints a message signifying an invalid command."""
         self._IO.print("Invalid command!", invalid=True)
 
+=======
+>>>>>>> dc33f15a8293987f3a99cfc127e41df9d71f42be
     def add_reference(self):
         """Adds a new reference."""
         reference = self._IO.get_reference()
@@ -110,9 +113,19 @@ class Application:
             if not id or len(references) < id:
                 self._IO.print("Not a valid index.", invalid=True)
             else:
+<<<<<<< HEAD
                 column = self._IO.input_check_int(
                     "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
                 )
+=======
+                message = "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
+                while True:
+                    column = self._IO.input_check_int(message)
+                    if int(column) >= 1 and int(column) <= 4:
+                        break
+                    else:
+                        self._IO.print("Invalid input.")
+>>>>>>> dc33f15a8293987f3a99cfc127e41df9d71f42be
                 new_value = self._IO.input("Enter a new value: ")
                 self._reference_service.edit_reference(
                     new_value, id, int(column))

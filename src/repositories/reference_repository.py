@@ -11,6 +11,13 @@ class ReferenceRepository:
         self._connection = connection
         self._cursor = self._connection.cursor()
 
+        self._querybuilds = {
+            1: "author = ? WHERE ID = ?",
+            2: "title = ? WHERE ID = ?",
+            3: "year = ? WHERE ID = ?",
+            4: "publisher = ? WHERE ID = ?"
+        }
+
     def create(self, reference):
         """Creates a new reference in the database.
 
@@ -44,15 +51,7 @@ class ReferenceRepository:
             index (integer): Index of the reference to be edited.
             column (integer): 1: author, 2: title, 3: year, 4: publisher.
         """
-        query = "UPDATE bookreferences set "
-        if column == 1:
-            query += "author = ? WHERE ID = ?"
-        elif column == 2:
-            query += "title = ? WHERE ID = ?"
-        elif column == 3:
-            query += "year = ? WHERE ID = ?"
-        else:
-            query += "publisher = ? WHERE ID = ?"
+        query = "UPDATE bookreferences set " + self._querybuilds[column]
         self._cursor.execute(
             query, (new_value, index)
         )

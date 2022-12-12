@@ -56,3 +56,5 @@ $ poetry run invoke robot
 ## Definition of Done
 
 Program is planned well. Code is written with Python. Code tests are passed with 75% coverage. Program works as intended and user story tests are done and passed with Robot Framework. Code is documented. Continuous integration and delivery is used.
+
+
