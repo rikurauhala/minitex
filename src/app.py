@@ -53,25 +53,26 @@ class Application:
 
     def print_invalid_command(self):
         """Prints a message signifying an invalid command."""
-        self._IO.print("Invalid command!")
+        self._IO.print("Invalid command!", invalid=True)
 
     def add_reference(self):
         """Adds a new reference."""
         reference = self._IO.get_reference()
         self._reference_service.add_reference(reference)
-        self._IO.print("Added a new reference.")
+        self._IO.print("Added a new reference.", valid=True)
 
     def add_reference_from_doi(self):
         """Adds a new reference from DOI."""
         reference = self._IO.get_reference_from_doi()
-        self._reference_service.add_reference(reference)
-        self._IO.print("Added a new reference.")
+        if reference:
+            self._reference_service.add_reference(reference)
+            self._IO.print("Added a new reference.", valid=True)
 
     def export_references(self):
         """Exports the references to BibTeX."""
         if (self._file_writer.write_bibtex(self._reference_service.get_references())):
             self._IO.print("References exported to " +
-                           self._file_writer.get_filepath() + " succesfully.")
+                           self._file_writer.get_filepath() + " succesfully.", valid=True)
 
     def show_references(self):
         """Prints all the references to the interface."""
@@ -93,10 +94,10 @@ class Application:
         if id:
             id = int(id)
             if not id or len(references) < id:
-                self._IO.print("Not a valid index.")
+                self._IO.print("Not a valid index.", invalid=True)
             else:
                 self._reference_service.delete_reference(references[id - 1])
-                self._IO.print("Reference deleted.")
+                self._IO.print("Reference deleted.", valid=True)
 
     def edit_reference(self):
         """Edits a reference."""
@@ -107,14 +108,15 @@ class Application:
         if id:
             id = int(id)
             if not id or len(references) < id:
-                self._IO.print("Not a valid index.")
+                self._IO.print("Not a valid index.", invalid=True)
             else:
                 column = self._IO.input_check_int(
-                "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
+                    "Enter 1 to edit authors, 2 to edit title, 3 to edit year or 4 to edit publisher: "
                 )
                 new_value = self._IO.input("Enter a new value: ")
-                self._reference_service.edit_reference(new_value, id, int(column))
-                self._IO.print("Reference edited.")
+                self._reference_service.edit_reference(
+                    new_value, id, int(column))
+                self._IO.print("Reference edited.", valid=True)
 
     def clear_console(self):
         """Clears the console."""
