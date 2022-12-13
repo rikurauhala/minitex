@@ -20,8 +20,8 @@ class ReferenceService:
             reference["year"],
             reference["publisher"]
         )
-        for reference in self.get_references():
-            if str(reference) == str(new_reference):
+        for ref in self.get_references():
+            if str(ref) == str(new_reference):
                 return False
         self._reference_repository.create(new_reference)
         self._references.append(new_reference)
