@@ -1,4 +1,5 @@
 import crossref_commons.retrieval as ccr
+from colorama import Fore, Style
 
 
 class ConsoleIO:
@@ -12,6 +13,22 @@ class ConsoleIO:
         """
         print(string)
 
+    def print_valid(self, string):
+        """Prints a given string to the console in a green color.
+
+        Args:
+            string: The string to be printed.
+        """
+        print(f'{Fore.GREEN}' + string + f'{Style.RESET_ALL}')
+
+    def print_invalid(self, string):
+        """Prints a given string to the console in a red color.
+
+        Args:
+            string: The string to be printed.
+        """
+        print(f'{Fore.RED}' + string + f'{Style.RESET_ALL}')
+
     def input(self, string):
         """Asks for a input and check if it's empty, if empty asks again.
 
@@ -22,7 +39,7 @@ class ConsoleIO:
             enter = input(string)
             if enter:
                 return enter
-            self.print("Input can not be empty, try again.")
+            self.print_invalid("Input can not be empty, try again.")
 
     def input_check_int(self, string):
         """Asks for a input and check if it's an integer.
@@ -34,9 +51,7 @@ class ConsoleIO:
             integer = input(string)
             if integer.isnumeric():
                 return integer
-            if integer == "q":
-                break
-            self.print("Input must be an integer, try again.")
+            self.print_invalid("Input must be an integer, try again.")
 
     def get_command(self):
         """Asks for a command from the user.
