@@ -11,11 +11,11 @@ authors = [
 ]
 
 [tool.poetry.dependencies]
+colorama = "^0.4.6"
 crossref-commons = "^0.0.7"
 invoke = "^1.7.3"
 python = "^3.10"
 python-dotenv = "^0.21.0"
-colorama = "^0.4.6"
 
 [tool.poetry.dev-dependencies]
 coverage = "^6.5.0"
