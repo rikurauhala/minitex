@@ -31,11 +31,7 @@ class FileWriter:
         Return:
             str: Entry to save into the file
         """
-        if "type" not in ref:
-            ref_type = "@BOOK"
-        else:
-            ref_type = ref["type"]
-
+        ref_type = "@BOOK" if "type" not in ref else ref["type"]
         return f"""{ref_type}{"{"}{ref['key']},
     title = "{ref['title']}",
     author = "{ref['authors']}",
@@ -58,5 +54,6 @@ class FileWriter:
                 return True
 
         except OSError as exc:
-            raise TypeError("Expected directory to be a valid path, instead got: ",
-                            file_path) from exc
+            raise TypeError(
+                "Expected directory to be a valid path, instead got: ", file_path
+            ) from exc

@@ -19,7 +19,7 @@ class ConsoleIO:
         Args:
             string: The string to be printed.
         """
-        print(f'{Fore.GREEN}' + string + f'{Style.RESET_ALL}')
+        print(f'{Fore.GREEN}{string}' + f'{Style.RESET_ALL}')
 
     def print_invalid(self, string):
         """Prints a given string to the console in a red color.
@@ -27,7 +27,7 @@ class ConsoleIO:
         Args:
             string: The string to be printed.
         """
-        print(f'{Fore.RED}' + string + f'{Style.RESET_ALL}')
+        print(f'{Fore.RED}{string}' + f'{Style.RESET_ALL}')
 
     def input(self, string):
         """Asks for a input and check if it's empty, if empty asks again.
@@ -36,8 +36,7 @@ class ConsoleIO:
             string: Input as a string.
         """
         while True:
-            enter = input(string)
-            if enter:
+            if enter := input(string):
                 return enter
             self.print_invalid("Input can not be empty, try again.")
 
@@ -76,7 +75,7 @@ class ConsoleIO:
                     break
                 self.print("At least one author is required.")
             elif author and authors:
-                authors += " and " + author
+                authors += f" and {author}"
             elif author:
                 authors += author
         return authors
@@ -91,13 +90,7 @@ class ConsoleIO:
         title = self.input("Input title: ")
         year = self.input_check_int("Input year published: ")
         publisher = self.input("Input publisher: ")
-        reference = {
-            "authors": authors,
-            "title": title,
-            "year": year,
-            "publisher": publisher
-        }
-        return reference
+        return {"authors": authors, "title": title, "year": year, "publisher": publisher}
 
     def get_reference_from_doi(self):
         """Asks for a DOI from the user.

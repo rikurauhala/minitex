@@ -26,7 +26,8 @@ class ReferenceRepository:
         """
         self._cursor.execute(
             "INSERT INTO bookreferences (author, title, year, publisher) VALUES (?, ?, ?, ?)",
-            (reference.author, reference.title, int(reference.year), reference.publisher)
+            (reference.author, reference.title, int(
+                reference.year), reference.publisher)
         )
         self._connection.commit()
 
@@ -36,8 +37,7 @@ class ReferenceRepository:
         Returns:
             references: All references in the database.
         """
-        references = self._cursor.execute("SELECT * FROM bookreferences")
-        return references
+        return self._cursor.execute("SELECT * FROM bookreferences")
 
     def edit(self, reference, column, new_value):
         """Edits a reference in the database.
@@ -51,7 +51,7 @@ class ReferenceRepository:
         WHERE author=? AND title=? AND year=? AND publisher=?")
         self._cursor.execute(
             query, (new_value, reference.author, reference.title,
-            reference.year, reference.publisher))
+                    reference.year, reference.publisher))
         self._connection.commit()
 
     def delete(self, reference):

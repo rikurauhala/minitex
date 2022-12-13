@@ -26,7 +26,7 @@ class AppLibrary:
         from reference.robot has same value as output list that was filled while app was running"""
         outputs = self._io.outputs
 
-        if not value in outputs:
+        if value not in outputs:
             raise AssertionError(
                 f"Output \"{value}\" is not in {str(outputs)}"
             )
@@ -42,7 +42,6 @@ class AppLibrary:
     def export_message_should_contain(self, value):
         #folder_path = Path("./data")
         #file_name = "references.bib"
-
         #message = value.split("*")
         #part = message[0] + str(self._folder_path.joinpath(self._file_name).resolve())
 

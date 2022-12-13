@@ -30,9 +30,7 @@ class ReferenceService:
             reference: Returns a reference object.
         """
         references = self._references
-        if len(references) > index >= 0:
-            return self._references[index]
-        return False
+        return self._references[index] if len(references) > index >= 0 else False
 
     def get_references(self):
         """Fetches a list of references in a readable form.

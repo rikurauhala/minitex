@@ -29,9 +29,10 @@ class IOStub:
         self.printitems.append(item)
     print_valid = print
     print_invalid = print
-    
+
     def input_check_int(self, message):
         return self.indx
+
 
 class TestApplication(unittest.TestCase):
     def setUp(self):

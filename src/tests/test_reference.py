@@ -23,7 +23,7 @@ class TestReference(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             self.r.title = 999
-        
+
         with self.assertRaises(ValueError):
             self.r.year = ""
 
@@ -35,10 +35,10 @@ class TestReference(unittest.TestCase):
 
     def testDataPropertyReturnsDict(self):
         excepted_data = {
-            'key': 'Martin91', 
-            'authors': 'Martin, Robert', 
-            'title': 'Cognitive apprenticeship: making thinking visible', 
-            'year': '1991', 
+            'key': 'Martin91',
+            'authors': 'Martin, Robert',
+            'title': 'Cognitive apprenticeship: making thinking visible',
+            'year': '1991',
             'publisher': 'Prentice Hall'
         }
 

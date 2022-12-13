@@ -37,13 +37,12 @@ class Application:
         self.print_commands()
         while True:
             command = self._commands.get(self._IO.get_command())
-            if not isinstance(command, Quit):
-                if command:
-                    command.run()
-                else:
-                    self._IO.print_invalid("Invalid command!")
-            else:
+            if isinstance(command, Quit):
                 break
+            if command:
+                command.run()
+            else:
+                self._IO.print_invalid("Invalid command!")
 
     def print_commands(self):
         """Prints a list of available commands."""
@@ -59,8 +58,7 @@ class Application:
 
     def add_reference_from_doi(self):
         """Adds a new reference from DOI."""
-        reference = self._IO.get_reference_from_doi()
-        if reference:
+        if reference := self._IO.get_reference_from_doi():
             self._reference_service.add_reference(reference)
             self._IO.print_valid("Added a new reference.")
 
@@ -72,22 +70,18 @@ class Application:
 
     def show_references(self):
         """Prints all the references to the interface."""
-        index = 1
-        references = self._reference_service.get_references()
-        if references:
+        if references := self._reference_service.get_references():
             self._IO.print("References: ")
-            for reference in references:
+            for index, reference in enumerate(references, start=1):
                 self._IO.print(f"{index}: {reference}")
-                index += 1
         else:
             self._IO.print("References have not been added yet.")
 
     def delete_reference(self):
         """Deletes a single reference."""
-        id = self._IO.input_check_int(
+        index = self._IO.input_check_int(
             "Enter the index of the reference you wish to delete: ")
-        reference = self._reference_service.get_reference(int(id) - 1)
-        if reference:
+        if reference := self._reference_service.get_reference(int(index) - 1):
             self._reference_service.delete_reference(reference)
             self._IO.print_valid("Reference deleted.")
         else:
@@ -95,33 +89,30 @@ class Application:
 
     def edit_reference(self):
         """Edits a reference."""
-        id = self._IO.input_check_int(
-            "Enter the index of the reference you wish to edit: "
-        )
-        if id:
-            reference = self._reference_service.get_reference(int(id) - 1)
-            if not reference:
-                self._IO.print_invalid("Not a valid index.")
-            else:
-                message = "[ 1 ] edit authors\n[ 2 ] edit title\n[ 3 ] edit year\n[ 4 ] edit publisher"
-                while True:
-                    self._IO.print(message)
-                    column = int(self._IO.input_check_int(
-                        "Input field to edit: "))
-                    if column and 4 >= column >= 1:
-                        break
-                    else:
-                        self._IO.print_invalid(
-                            "Invalid input, try again.")
-                if column == 1:
-                    new_value = self._IO.input_authors()
-                elif column == 3:
-                    new_value = self._IO.input_check_int("Enter a new value: ")
+        if not (id := self._IO.input_check_int("Enter the index of the reference you wish to edit: ")):
+            return
+        if reference := self._reference_service.get_reference(int(id) - 1):
+            message = "[ 1 ] edit authors\n[ 2 ] edit title\n[ 3 ] edit year\n[ 4 ] edit publisher"
+            while True:
+                self._IO.print(message)
+                column = int(self._IO.input_check_int(
+                    "Input field to edit: "))
+                if column and 4 >= column >= 1:
+                    break
                 else:
-                    new_value = self._IO.input("Enter a new value: ")
-                self._reference_service.edit_reference(
-                    reference, column, new_value)
-                self._IO.print_valid("Reference edited.")
+                    self._IO.print_invalid(
+                        "Invalid input, try again.")
+            if column == 1:
+                new_value = self._IO.input_authors()
+            elif column == 3:
+                new_value = self._IO.input_check_int("Enter a new value: ")
+            else:
+                new_value = self._IO.input("Enter a new value: ")
+            self._reference_service.edit_reference(
+                reference, column, new_value)
+            self._IO.print_valid("Reference edited.")
+        else:
+            self._IO.print_invalid("Not a valid index.")
 
     def clear_console(self):
         """Clears the console."""
