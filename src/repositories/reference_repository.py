@@ -12,10 +12,10 @@ class ReferenceRepository:
         self._cursor = self._connection.cursor()
 
         self._querybuilds = {
-            1: "author = ? WHERE ID = ?",
-            2: "title = ? WHERE ID = ?",
-            3: "year = ? WHERE ID = ?",
-            4: "publisher = ? WHERE ID = ?"
+            1: "author = ?",
+            2: "title = ?",
+            3: "year = ?",
+            4: "publisher = ?"
         }
 
     def create(self, reference):
@@ -24,13 +24,9 @@ class ReferenceRepository:
         Args:
             reference (Reference): A reference object.
         """
-        authors = reference.author
-        title = reference.title
-        year = reference.year
-        publisher = reference.publisher
         self._cursor.execute(
             "INSERT INTO bookreferences (author, title, year, publisher) VALUES (?, ?, ?, ?)",
-            (authors, title, int(year), publisher)
+            (reference.author, reference.title, int(reference.year), reference.publisher)
         )
         self._connection.commit()
 
@@ -43,7 +39,7 @@ class ReferenceRepository:
         references = self._cursor.execute("SELECT * FROM bookreferences")
         return references
 
-    def edit(self, new_value, index, column):
+    def edit(self, reference, column, new_value):
         """Edits a reference in the database.
 
         Args:
@@ -51,9 +47,9 @@ class ReferenceRepository:
             index (integer): Index of the reference to be edited.
             column (integer): 1: author, 2: title, 3: year, 4: publisher.
         """
-        query = "UPDATE bookreferences set " + self._querybuilds[column]
+        query = "UPDATE bookreferences SET " + self._querybuilds[column] + " WHERE author=? AND title=? AND year=? AND publisher=?"
         self._cursor.execute(
-            query, (new_value, index)
+            query, (new_value, reference.author, reference.title, reference.year, reference.publisher)
         )
         self._connection.commit()
 

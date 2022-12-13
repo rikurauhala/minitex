@@ -120,7 +120,7 @@ class Application:
                 else:
                     new_value = self._IO.input("Enter a new value: ")
                 self._reference_service.edit_reference(
-                    new_value, id, column)
+                    reference, column, new_value)
                 self._IO.print_valid("Reference edited.")
 
     def clear_console(self):

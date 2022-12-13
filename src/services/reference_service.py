@@ -68,7 +68,7 @@ class ReferenceService:
         self._reference_repository.delete_all()
         self._references = []
 
-    def edit_reference(self, new_value, index, column):
+    def edit_reference(self, reference, column, new_value):
         """Edits a reference.
 
         Args:
@@ -76,6 +76,6 @@ class ReferenceService:
             index (integer): Index of the reference to be edited.
             column (integer): 1: author, 2: title, 3: year, 4: publisher.
         """
-        self._reference_repository.edit(new_value, index, column)
+        self._reference_repository.edit(reference, column, new_value)
         self._references = []
         self._import_all_references_to_memory()

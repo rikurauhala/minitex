@@ -47,7 +47,7 @@ class TestReferenceRepository(unittest.TestCase):
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][1], self.reference1.author)
         new_author = "New author"
-        self.repository.edit(new_author, 1, 1)
+        self.repository.edit(self.reference1, 1, new_author)
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][1], new_author)
         self.repository.delete_all()
@@ -57,7 +57,7 @@ class TestReferenceRepository(unittest.TestCase):
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][1], self.reference1.author)
         new_title = "New title"
-        self.repository.edit(new_title, 1, 2)
+        self.repository.edit(self.reference1, 2, new_title)
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][2], new_title)
         self.repository.delete_all()
@@ -67,7 +67,7 @@ class TestReferenceRepository(unittest.TestCase):
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][1], self.reference1.author)
         new_year = 2005
-        self.repository.edit(new_year, 1, 3)
+        self.repository.edit(self.reference1, 3, new_year)
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][3], new_year)
         self.repository.delete_all()
@@ -77,7 +77,7 @@ class TestReferenceRepository(unittest.TestCase):
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][1], self.reference1.author)
         new_publisher = "New publisher"
-        self.repository.edit(new_publisher, 1, 4)
+        self.repository.edit(self.reference1, 4, new_publisher)
         items = self.repository.find_all().fetchall()
         self.assertEqual(items[0][4], new_publisher)
         self.repository.delete_all()

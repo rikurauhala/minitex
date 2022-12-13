@@ -62,28 +62,28 @@ class TestReferenceRepository(unittest.TestCase):
         self.assertEqual(stored_ref1.year, self.reference1["year"])
         self.assertEqual(stored_ref1.publisher, self.reference1["publisher"])
         new_author = "New author"
-        self.repository.edit_reference(new_author, 1, 1)
+        self.repository.edit_reference(stored_ref1, 1, new_author)
         stored_ref1 = self.repository.get_references()[0]
         self.assertEqual(stored_ref1.author, new_author)
         self.assertEqual(stored_ref1.title, self.reference1["title"])
         self.assertEqual(stored_ref1.year, self.reference1["year"])
         self.assertEqual(stored_ref1.publisher, self.reference1["publisher"])
         new_title = "New title"
-        self.repository.edit_reference(new_title, 1, 2)
+        self.repository.edit_reference(stored_ref1, 2, new_title)
         stored_ref1 = self.repository.get_references()[0]
         self.assertEqual(stored_ref1.author, new_author)
         self.assertEqual(stored_ref1.title, new_title)
         self.assertEqual(stored_ref1.year, self.reference1["year"])
         self.assertEqual(stored_ref1.publisher, self.reference1["publisher"])
         new_year = "2005"
-        self.repository.edit_reference(new_year, 1, 3)
+        self.repository.edit_reference(stored_ref1, 3, new_year)
         stored_ref1 = self.repository.get_references()[0]
         self.assertEqual(stored_ref1.author, new_author)
         self.assertEqual(stored_ref1.title, new_title)
         self.assertEqual(stored_ref1.year, new_year)
         self.assertEqual(stored_ref1.publisher, self.reference1["publisher"])
         new_publisher = "New publisher"
-        self.repository.edit_reference(new_publisher, 1, 4)
+        self.repository.edit_reference(stored_ref1, 4, new_publisher)
         stored_ref1 = self.repository.get_references()[0]
         self.assertEqual(stored_ref1.author, new_author)
         self.assertEqual(stored_ref1.title, new_title)
