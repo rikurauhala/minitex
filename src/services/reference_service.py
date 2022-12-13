@@ -23,6 +23,17 @@ class ReferenceService:
         self._reference_repository.create(new_reference)
         self._references.append(new_reference)
 
+    def get_reference(self, index):
+        """Fetches one reference from the list.
+
+        Returns:
+            reference: Returns a reference object.
+        """
+        references = self._references
+        if len(references) > index >= 0:
+            return self._references[index]
+        return False
+
     def get_references(self):
         """Fetches a list of references in a readable form.
 
