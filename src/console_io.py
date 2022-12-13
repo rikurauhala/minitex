@@ -107,16 +107,19 @@ class ConsoleIO:
         """
         while True:
             try:
-                doi = input("Insert a valid DOI: ")
+                doi = self.input("Insert a valid DOI  (q to cancel): ")
+                if doi.lower() == "q":
+                    return False
                 reference = ccr.get_publication_as_json(doi)
             except ValueError:
-                self.print("Invalid DOI. Try again.")
+                self.print_invalid("Invalid DOI, try again.")
                 continue
             reference_type = reference["type"]
             if reference_type != "book":
-                self.print("Reference must be a book. Try again.")
+                self.print_invalid(
+                    "Reference must be a book, try again.")
                 continue
-            year = reference["published-online"]["date-parts"][0][0]
+            year = reference["published"]["date-parts"][0][0]
             editors = reference["editor"]
             authors_list = []
             for author in editors:
