@@ -49,7 +49,7 @@ class FileWriter:
         file_path = self._folder_path.joinpath(self._file_name)
 
         try:
-            with open(file_path, "a", encoding="utf-8") as file:
+            with open(file_path, "w", encoding="utf-8") as file:
                 file.truncate(0)
                 for ref in references:
                     entry = self._make_entry_string(ref.data)
