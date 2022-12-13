@@ -68,6 +68,7 @@ class Quit():
     def __str__(self):
         return "[ q ] quit"
 
+
 class Edit():
     def __init__(self, app):
         self.app = app

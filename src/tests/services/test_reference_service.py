@@ -21,7 +21,7 @@ class TestReferenceRepository(unittest.TestCase):
             "year": "2001",
             "publisher": "Kodansha"
         }
-    
+
     def test_adds_one_reference(self):
         self.repository.add_reference(self.reference1)
         stored_ref = self.repository.get_references()[0]

@@ -15,9 +15,7 @@ class StubIO:
 
     def get_command(self):
         """Takes preset command from inputs list when app asks for it"""
-        if len(self.inputs) > 0:
-            return self.inputs.pop(0)
-        return ""
+        return self.inputs.pop(0) if len(self.inputs) > 0 else ""
 
     def give_command(self, command_input):
         """Robot Framework uses AppLibrary (which uses this method) to fill command inputs
@@ -27,9 +25,7 @@ class StubIO:
     # pylint: disable=unused-argument
     def input_check_int(self, command_input):
         integer = self.inputs.pop(0)
-        if integer.isnumeric():
-            return int(integer)
-        return 1
+        return int(integer) if integer.isnumeric() else 1
 
     def input_integer(self, integer):
         self.inputs.append(integer)
@@ -49,7 +45,7 @@ class StubIO:
                     break
                 print("At least one author is required")
             elif author and authors:
-                authors += " and " + author
+                authors += f" and {author}"
             elif author:
                 authors += author
         title = self.inputs.pop(0)

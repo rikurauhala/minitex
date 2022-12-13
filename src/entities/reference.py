@@ -64,14 +64,8 @@ class Reference:
         Returns:
             dict: Reference object data as dict
         """
-        reference = {
-            "key": self._gen_key(),
-            "authors": self._author,
-            "title": self._title,
-            "year": self._year,
-            "publisher": self._publisher
-        }
-        return reference
+        return {"key": self._gen_key(), "authors": self._author, "title": self._title,
+                "year": self._year, "publisher": self._publisher}
 
     def _gen_key(self) -> str:
         """Generates key attribute for reference based on the authors lastnames
@@ -96,10 +90,7 @@ class Reference:
         if len(last_names) == 1:
             key = last_names[0]
         else:
-            key = ""
-            for name in last_names:
-                key += name[0]
-
+            key = "".join(name[0] for name in last_names)
         key += self.year[-2:]
 
         return key
@@ -124,5 +115,4 @@ class Reference:
                 authors += f"{first_name} {last_name}"
             else:
                 authors += author
-        string = f"{authors} | {self.title} | {self.publisher} ({self.year})"
-        return string
+        return f"{authors} | {self.title} | {self.publisher} ({self.year})"

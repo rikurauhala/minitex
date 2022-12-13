@@ -1,6 +1,7 @@
 import unittest
 from utils import validators
 
+
 class TestValidators(unittest.TestCase):
     def testValidateStringAttributes(self):
         validation = validators.validate_attribute_string(

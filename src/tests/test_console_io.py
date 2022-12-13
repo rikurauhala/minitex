@@ -13,6 +13,7 @@ class StubIO(ConsoleIO):
             return "10.1002/9780470209943"
         return "q"
 
+
 class TestConsoleIO(unittest.TestCase):
     def setUp(self):
         self.IO = StubIO()
@@ -36,8 +37,8 @@ class TestConsoleIO(unittest.TestCase):
                          self.doi.get("title"))
 
     def test__doi_returns_the_correct_year(self):
-        self.assertEqual(self.reference.get("year"), 
-        self.doi.get("year"))
+        self.assertEqual(self.reference.get("year"),
+                         self.doi.get("year"))
 
     def test__doi_returns_the_correct_publisher(self):
         self.assertEqual(self.reference.get("publisher"),
