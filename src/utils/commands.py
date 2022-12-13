@@ -25,7 +25,7 @@ class AddDoi():
         self.app = app
 
     def __str__(self):
-        return "[ o ] add a new reference based based on DOI"
+        return "[ o ] add a new reference based on DOI"
 
     def run(self):
         return self.app.add_reference_from_doi()
