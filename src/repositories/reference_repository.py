@@ -47,10 +47,11 @@ class ReferenceRepository:
             index (integer): Index of the reference to be edited.
             column (integer): 1: author, 2: title, 3: year, 4: publisher.
         """
-        query = "UPDATE bookreferences SET " + self._querybuilds[column] + " WHERE author=? AND title=? AND year=? AND publisher=?"
+        query = (f"UPDATE bookreferences SET {self._querybuilds[column]}\
+        WHERE author=? AND title=? AND year=? AND publisher=?")
         self._cursor.execute(
-            query, (new_value, reference.author, reference.title, reference.year, reference.publisher)
-        )
+            query, (new_value, reference.author, reference.title,
+            reference.year, reference.publisher))
         self._connection.commit()
 
     def delete(self, reference):
