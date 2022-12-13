@@ -61,15 +61,16 @@ class ConsoleIO:
         """
         return input("Input command: ").lower()
 
-    def get_reference(self):
-        """Asks for a reference from the user.
+    def input_authors(self):
+        """Asks for multiple authors from the user.
 
         Returns:
-            dict: authors, title, year published and publisher as dict.
+            string: authors as a string combined with and in between
         """
         authors = ""
         while True:
-            author = self.input("Input authors in format lastname, firstname (q to stop): ")
+            author = self.input(
+                "Input authors in format lastname, firstname (q to stop): ")
             if author.lower() == "q":
                 if authors:
                     break
@@ -78,6 +79,15 @@ class ConsoleIO:
                 authors += " and " + author
             elif author:
                 authors += author
+        return authors
+
+    def get_reference(self):
+        """Asks for a reference from the user.
+
+        Returns:
+            dict: authors, title, year published and publisher as dict.
+        """
+        authors = self.input_authors()
         title = self.input("Input title: ")
         year = self.input_check_int("Input year published: ")
         publisher = self.input("Input publisher: ")
