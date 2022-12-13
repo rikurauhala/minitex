@@ -1,7 +1,7 @@
 class StubIO:
     """Module for simulating user input."""
 
-    def __init__(self, inputs = None):
+    def __init__(self, inputs=None):
         """Creates list for inputs that gets string inputs resource.robot arguments
         Creates list for outputs that StubIO fills and robot framework test environment reads"""
         self.inputs = inputs or []
@@ -10,6 +10,8 @@ class StubIO:
     def print(self, output):
         """Adds prompt from app into ouputs list"""
         self.outputs.append(output)
+    print_valid = print
+    print_invalid = print
 
     def get_command(self):
         """Takes preset command from inputs list when app asks for it"""

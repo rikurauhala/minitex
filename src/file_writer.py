@@ -4,7 +4,7 @@ from pathlib import Path
 class FileWriter:
     """Class for writing Bibtex files."""
 
-    def __init__(self, folder_path: str=None) -> None:
+    def __init__(self, folder_path: str = None) -> None:
         """Creates a new instance of FileWriter.
 
         Args:
