@@ -20,8 +20,12 @@ class ReferenceService:
             reference["year"],
             reference["publisher"]
         )
+        for ref in self.get_references():
+            if str(ref) == str(new_reference):
+                return False
         self._reference_repository.create(new_reference)
         self._references.append(new_reference)
+        return True
 
     def get_reference(self, index):
         """Fetches one reference from the list.

@@ -53,14 +53,18 @@ class Application:
     def add_reference(self):
         """Adds a new reference."""
         reference = self._IO.get_reference()
-        self._reference_service.add_reference(reference)
-        self._IO.print_valid("Added a new reference.")
+        if self._reference_service.add_reference(reference):
+            self._IO.print_valid("Added a new reference.")
+        else:
+            self._IO.print_invalid("You have added this reference already.")
 
     def add_reference_from_doi(self):
         """Adds a new reference from DOI."""
         if reference := self._IO.get_reference_from_doi():
-            self._reference_service.add_reference(reference)
-            self._IO.print_valid("Added a new reference.")
+            if self._reference_service.add_reference(reference):
+                self._IO.print_valid("Added a new reference.")
+            else:
+                self._IO.print_invalid("You have added this reference already.")
 
     def export_references(self):
         """Exports the references to BibTeX."""

@@ -29,19 +29,16 @@ Store References In Database
     Input Quit Command
     Run Application
     Output Should Contain  1: Philip Pullman | Kultainen Kompassi | Tammi (1996)
-    Output Should Contain  3: George R. R. Martin | Tuf Voyaging | Meisha Merlin (2003)
+    Output Should Contain  2: George R. R. Martin | Tuf Voyaging | Meisha Merlin (2003)
 
 Delete References In Database
     Input New Reference Command
     Input New Reference  Philip Pullman  Kultainen Kompassi  1996  Tammi
-    Input New Reference Command
-    Input New Reference  George R. R. Martin  Tuf Voyaging  2003  Meisha Merlin
-    Delete Reference Of Index  2
+    Delete Reference Of Index  1
     Input Print Command
     Input Quit Command
     Run Application
-    Output Should Contain  1: Philip Pullman | Kultainen Kompassi | Tammi (1996)
-    Output Should Not Contain  2: George R. R. Martin | Tuf Voyaging | Meisha Merlin (2003)
+    Output Should Contain  References have not been added yet.
 
 Export References Into Bibtex File
     Input New Reference Command
