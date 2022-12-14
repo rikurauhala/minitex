@@ -100,7 +100,7 @@ class ConsoleIO:
         """
         while True:
             try:
-                doi = self.input("Insert a valid DOI  (q to cancel): ")
+                doi = self.input("Insert a valid DOI (q to cancel): ")
                 if doi.lower() == "q":
                     return False
                 reference = ccr.get_publication_as_json(doi)
