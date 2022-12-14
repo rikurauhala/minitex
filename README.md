@@ -40,7 +40,7 @@ $ python src/index.py
 ### How to test
 
 ```bash
-# Run unit tests
+# Run unit tests 
 $ poetry run invoke test
 
 # Run user story tests
@@ -52,6 +52,7 @@ $ poetry run invoke robot
 - [Product Backlog](https://docs.google.com/spreadsheets/d/e/2PACX-1vT0XfimtFOWroZy0wJ5NKa43JU2sddjG1ixwx4_bO4ShlPGQ1gfIO_tivunbP-bqmIWVCWoO5qOdBI6/pubhtml)
 - [Continuous Integration](https://github.com/rikurauhala/minitex/blob/main/.github/workflows/main.yml)
 - [Test Coverage Report](https://app.codecov.io/gh/rikurauhala/minitex)
+- [User Story tests with acceptance criteria](https://github.com/rikurauhala/minitex/blob/main/src/tests/reference.robot)
 
 ## Definition of Done
 
