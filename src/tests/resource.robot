@@ -22,7 +22,29 @@ Input Print Command
 Input Export Command
     Input  e
 
+Input Edit Reference Command
+    Input  u
+
+Input Edit Author Command
+    Input Integer  1
+
+Choose Reference Index To Edit
+    [Arguments]  ${index}
+    Input Integer  ${index}
+
+Input Edited Reference Field
+    [Arguments]  ${string}
+    Input  ${string}
+    Input  q
+
 Delete Reference Of Index
     [Arguments]  ${index}
     Input  d
     Input Integer  ${index}
+
+Input New Doi Command
+    Input  o
+
+Input Doi
+    [Arguments]  ${doi}
+    Input  ${doi}

@@ -51,7 +51,27 @@ Export References Into Bibtex File
     Input Export Command
     Input Quit Command
     Run Application
-    Export Message Should Contain  References exported succesfully to *your filepath*
+    Export Message Should Contain  References exported to *your filepath* succesfully.
+
+Edit A ReferenceReference edited
+    Input New Reference Command
+    Input New Reference  Philip Pullman  Kultainen Kompassi  1996  Tammi
+    Input Edit Reference Command
+    Choose Reference Index To Edit  1
+    Input Edit Author Command
+    Input Edited Reference Field  Carl Barks
+    Input Quit Command
+    Run Application
+    Output Should Contain  Reference edited.
+
+Add A Book Reference Using Doi
+    Input New Doi Command
+    Input Doi  10.1007/3-540-45471-3
+    Input Print Command
+    Input Quit Command
+    Run Application
+    Output Should Contain  Added a new reference.
+    Output Should Contain  2: Martti Penttonen and Erik Meineche Schmidt | Algorithm Theory — SWAT 2002 | Springer Berlin Heidelberg (2002)
     Format Database
 
 *** Keywords ***

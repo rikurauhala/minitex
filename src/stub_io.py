@@ -1,7 +1,7 @@
 class StubIO:
     """Module for simulating user input."""
 
-    def __init__(self, inputs=None):
+    def __init__(self, inputs = None):
         """Creates list for inputs that gets string inputs resource.robot arguments
         Creates list for outputs that StubIO fills and robot framework test environment reads"""
         self.inputs = inputs or []
@@ -10,25 +10,41 @@ class StubIO:
     def print(self, output):
         """Adds prompt from app into ouputs list"""
         self.outputs.append(output)
-    print_valid = print
-    print_invalid = print
+
+    def print_valid(self, output):
+        """Adds prompt from app into ouputs list"""
+        self.outputs.append(output)
+
+    def print_invalid(self, output):
+        """Adds prompt from app into ouputs list"""
+        self.outputs.append(output)
+
+    def input_authors(self):
+        return self.inputs.pop(0)
 
     def get_command(self):
         """Takes preset command from inputs list when app asks for it"""
-        return self.inputs.pop(0) if len(self.inputs) > 0 else ""
+        if len(self.inputs) > 0:
+            return self.inputs.pop(0)
+        return ""
 
     def give_command(self, command_input):
         """Robot Framework uses AppLibrary (which uses this method) to fill command inputs
         with resource.robot arguments before the app starts"""
         self.inputs.append(command_input)
 
-    # pylint: disable=unused-argument
     def input_check_int(self, command_input):
+        self.outputs.append(command_input)
         integer = self.inputs.pop(0)
-        return int(integer) if integer.isnumeric() else 1
+        if integer.isnumeric():
+            return int(integer)
+        return 1
 
     def input_integer(self, integer):
         self.inputs.append(integer)
+
+    def input(self, edit_reference_command):
+        self.inputs.append(edit_reference_command)
 
     def get_reference(self):
         """Gets information for reference (that robot test file put there in arguments)
@@ -45,7 +61,7 @@ class StubIO:
                     break
                 print("At least one author is required")
             elif author and authors:
-                authors += f" and {author}"
+                authors += " and " + author
             elif author:
                 authors += author
         title = self.inputs.pop(0)
@@ -54,3 +70,10 @@ class StubIO:
         if authors and title and year and publisher:
             return {"authors": authors, "title": title, "year": str(year), "publisher": publisher}
         self.print("Something went wrong, did you fill all the fields?")
+
+    def get_reference_from_doi(self):
+        authors = "Martti Penttonen and Erik Meineche Schmidt"
+        title = "Algorithm Theory — SWAT 2002"
+        year = 2002
+        publisher = "Springer Berlin Heidelberg"
+        return {"authors": authors, "title": title, "year": str(year), "publisher": publisher}
