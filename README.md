@@ -53,6 +53,7 @@ $ poetry run invoke robot
 - [Continuous Integration](https://github.com/rikurauhala/minitex/blob/main/.github/workflows/main.yml)
 - [Test Coverage Report](https://app.codecov.io/gh/rikurauhala/minitex)
 - [User Story tests with acceptance criteria](https://github.com/rikurauhala/minitex/blob/main/src/tests/reference.robot)
+- [Course Finish Report](https://github.com/rikurauhala/minitex/blob/main/Raportti.md)
 
 ## Definition of Done
 
