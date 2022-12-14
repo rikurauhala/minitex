@@ -68,7 +68,7 @@ Add A Book Reference Using Doi
     Input Quit Command
     Run Application
     Output Should Contain  Added a new reference.
-    Output Should Contain  2: Martti Penttonen and Erik Meineche Schmidt | Algorithm Theory — SWAT 2002 | Springer Berlin Heidelberg (2002)
+    Output Should Contain  1: Martti Penttonen and Erik Meineche Schmidt | Algorithm Theory — SWAT 2002 | Springer Berlin Heidelberg (2002)
     Format Database
 
 *** Keywords ***
