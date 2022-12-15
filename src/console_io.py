@@ -19,7 +19,7 @@ class ConsoleIO:
         Args:
             string: The string to be printed.
         """
-        print(f'{Fore.GREEN}{string}' + f'{Style.RESET_ALL}')
+        print(f"{Fore.GREEN}{string}" + f"{Style.RESET_ALL}")
 
     def print_invalid(self, string):
         """Prints a given string to the console in a red color.
@@ -27,10 +27,10 @@ class ConsoleIO:
         Args:
             string: The string to be printed.
         """
-        print(f'{Fore.RED}{string}' + f'{Style.RESET_ALL}')
+        print(f"{Fore.RED}{string}" + f"{Style.RESET_ALL}")
 
     def input(self, string):
-        """Asks for a input and check if it's empty, if empty asks again.
+        """Asks for a input and check if it"s empty, if empty asks again.
 
         Returns:
             string: Input as a string.
@@ -41,7 +41,7 @@ class ConsoleIO:
             self.print_invalid("Input can not be empty, try again.")
 
     def input_check_int(self, string):
-        """Asks for a input and check if it's an integer.
+        """Asks for a input and check if it"s an integer.
 
         Returns:
             int: input as an integer
@@ -112,8 +112,7 @@ class ConsoleIO:
                 break
             reference_type = reference["type"]
             if reference_type != "book":
-                self.print_invalid(
-                    "Reference must be a book, try again.")
+                self.print_invalid("Reference must be a book, try again.")
                 continue
             year = reference["published"]["date-parts"][0][0]
             editors = reference["editor"]
