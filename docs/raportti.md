@@ -25,7 +25,7 @@ Robot Frameworkin kanssa oli haasteita uusia testejä luotaessa. Ongelman korjaa
 
 ### Hyvää
 
-Mietimme ja kysyimme heti alussa, mitkä ovat virhealttiita tilanteita, joten onnistuimme luomaan aika hyvän toimintatavan heti alusta lähtien. Taskien jako ja yhdessä toteutustavoista kommunikointi suojasivat katastrofaalisilta tilanteilta.
+Mietimme ja kysyimme heti alussa, mitkä ovat virhealttiita tilanteita, joten onnistuimme luomaan aika hyvän toimintatavan heti alusta lähtien. Taskien jako ja yhdessä toteutustavoista kommunikointi suojasivat katastrofaalisilta tilanteilta. Ryhmänkeskeinen kommunikaatio myös auttoi esimerkiksi koodista johtuvien epäselvyyksien selventämisessä, ja bugien löytämisessä ja korjaamisessa.
 
 ### Huonoa
 
@@ -33,11 +33,12 @@ Aikatauluja oli vaikea arvioida ja aluksi sovimme ryhmän sisäisen deadlinen li
 
 ## Mitä opimme
 
-Vahvistimme käsityksen yhdessä sunnittelun ja kommunikoinnin tärkeydestä. Luultavasti osaamme tulevaisuudessakin alussa saada ryhmän ajatukset projektista synkronisoitua, jotta voimme alkaa viemään projektia samaan suuntaan. Opimme kukin aika kokonaisvaltaisesti projektin rakentamisesta, oppiminen painottuen hieman siihen, mitä kukin yleensä sai ratkaistavakseen.
+Vahvistimme käsityksen yhdessä sunnittelun ja kommunikoinnin tärkeydestä. Luultavasti osaamme tulevaisuudessakin alussa saada ryhmän ajatukset projektista synkronisoitua, jotta voimme alkaa viemään projektia samaan suuntaan. Opimme kukin aika kokonaisvaltaisesti projektin rakentamisesta, oppiminen painottuen hieman siihen, mitä kukin yleensä sai ratkaistavakseen. Testien kirjoittaminen ei sinänsä ollut uutta, mutta niiden ja koodin laadun jatkuva ylläpitäminen tulivat tutuksi projektin aikana.
 
 ## Mitä olisimme halunneet oppia
 
-Demossa nähty terminaalin näppäinvalintatoiminnallisuus olisi ollut mielenkiintoista oppia. Emme vain tienneet tällaisen olevan edes mahdollista toteuttaa.
+Demossa nähty terminaalin näppäinvalintatoiminnallisuus olisi ollut mielenkiintoista oppia. Emme vain tienneet tällaisen olevan edes mahdollista toteuttaa. Muutenkin olisi ollut kiinnostavaa tehdä hieman edistyneempi käyttöliittymä, mutta tähän tuskin aika olisi riittänyt ilman ominaisuuksien karsimista.
 
 ## Mikä oli turhaa
 
+Turhalta tuntui muiden ryhmäläisten tekemään koodiin tutustumiseen käytetty aika. Tätä ongelmaa olisi voinut tietenkin välttää esimerkiksi pariohjelmoimalla enemmän.
