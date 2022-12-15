@@ -107,6 +107,9 @@ class ConsoleIO:
             except ValueError:
                 self.print_invalid("Invalid DOI, try again.")
                 continue
+            except ConnectionError:
+                self.print_invalid("Connection timed out. Try again later.")
+                break
             reference_type = reference["type"]
             if reference_type != "book":
                 self.print_invalid(

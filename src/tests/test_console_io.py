@@ -26,20 +26,36 @@ class TestConsoleIO(unittest.TestCase):
         }
 
     def test_adding_valid_doi_adds_returns_book_reference(self):
-        self.assertEqual(self.doi, self.reference)
+        if self.reference:
+            self.assertEqual(
+                self.doi,
+                self.reference
+            )
 
-    def test__doi_returns_the_correct_authors(self):
-        self.assertEqual(self.reference.get("authors"),
-                         self.doi.get("authors"))
+    def test_doi_returns_the_correct_authors(self):
+        if self.reference:
+            self.assertEqual(
+                self.reference.get("authors"),
+                self.doi.get("authors")
+            )
 
-    def test__doi_returns_the_correct_title(self):
-        self.assertEqual(self.reference.get("title"),
-                         self.doi.get("title"))
+    def test_doi_returns_the_correct_title(self):
+        if self.reference:
+            self.assertEqual(
+                self.reference.get("title"),
+                self.doi.get("title")
+            )
 
-    def test__doi_returns_the_correct_year(self):
-        self.assertEqual(self.reference.get("year"),
-                         self.doi.get("year"))
+    def test_doi_returns_the_correct_year(self):
+        if self.reference:
+            self.assertEqual(
+                self.reference.get("year"),
+                self.doi.get("year")
+            )
 
-    def test__doi_returns_the_correct_publisher(self):
-        self.assertEqual(self.reference.get("publisher"),
-                         self.doi.get("publisher"))
+    def test_doi_returns_the_correct_publisher(self):
+        if self.reference:
+            self.assertEqual(
+                self.reference.get("publisher"),
+                self.doi.get("publisher")
+            )
