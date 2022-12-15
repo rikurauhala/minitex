@@ -1,7 +1,6 @@
-
 import crossref_commons.retrieval as ccr
 from colorama import Fore, Style
-from requests.exceptions import ConnectionError
+
 
 class ConsoleIO:
     """Module for user input and output."""
