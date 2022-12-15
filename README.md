@@ -61,11 +61,12 @@ $ poetry run invoke robot
 ## Documentation
 
 - [Product Backlog](https://docs.google.com/spreadsheets/d/e/2PACX-1vT0XfimtFOWroZy0wJ5NKa43JU2sddjG1ixwx4_bO4ShlPGQ1gfIO_tivunbP-bqmIWVCWoO5qOdBI6/pubhtml)
+- [User Story tests with acceptance criteria](src/tests/reference.robot)
 - [Continuous Integration](.github/workflows/main.yml)
 - [Test Coverage Report](https://app.codecov.io/gh/rikurauhala/minitex)
-- [User Story tests with acceptance criteria](src/tests/reference.robot)
-- [Course Finish Report](docs/raportti.md)
 - [User manual](docs/manual.md)
+- [Architecture](docs/architecture.md)
+- [Course Finish Report](docs/raportti.md)
 
 ## Definition of Done
 
