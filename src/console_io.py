@@ -1,7 +1,6 @@
-
 import crossref_commons.retrieval as ccr
 from colorama import Fore, Style
-from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectionError as NetworkError
 
 class ConsoleIO:
     """Module for user input and output."""
@@ -108,7 +107,7 @@ class ConsoleIO:
             except ValueError:
                 self.print_invalid("Invalid DOI, try again.")
                 continue
-            except ConnectionError:
+            except NetworkError:
                 self.print_invalid("Connection timed out. Try again later.")
                 break
             reference_type = reference["type"]
