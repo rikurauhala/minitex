@@ -1,5 +1,7 @@
+
 import crossref_commons.retrieval as ccr
 from colorama import Fore, Style
+from requests.exceptions import ConnectionError
 
 class ConsoleIO:
     """Module for user input and output."""
@@ -109,8 +111,6 @@ class ConsoleIO:
             except ConnectionError:
                 self.print_invalid("Connection timed out. Try again later.")
                 break
-            except:
-                return False
             reference_type = reference["type"]
             if reference_type != "book":
                 self.print_invalid("Reference must be a book, try again.")

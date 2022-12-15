@@ -65,8 +65,6 @@ class Application:
                 self._IO.print_valid("Added a new reference.")
             else:
                 self._IO.print_invalid("You have added this reference already.")
-        else:
-            self._IO.print_invalid("Something went wrong, make sure you are connected to internet.")
 
     def export_references(self):
         """Exports the references to BibTeX."""
