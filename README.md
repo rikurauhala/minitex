@@ -9,6 +9,8 @@ Ohjelmistotuotanto-kurssin miniprojekti | Helsingin yliopisto | Syksy 2022
 
 ## Releases
 
+- 1.0 (pending)
+- [Demo](https://github.com/rikurauhala/minitex/releases/tag/demo)
 - [Sprint 2](https://github.com/rikurauhala/minitex/releases/tag/sprint2)
 
 ## Instructions
