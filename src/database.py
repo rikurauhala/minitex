@@ -48,23 +48,21 @@ def create_tables(connection):
             year INTEGER,
             publisher TEXT
         )"""
-                   )
+    )
     connection.commit()
 
 
 def check_if_path_exists():
     if not os.path.isdir(DATA_FOLDER_PATH):
         current_directory = os.path.dirname(__file__)
-        os.makedirs(os.path.join(current_directory,
-                    "..", "data"), exist_ok=True)
+        os.makedirs(os.path.join(current_directory, "..", "data"), exist_ok=True)
 
 
 def check_if_table_exists(connection):
     cursor = connection.cursor()
     tables = cursor.execute("""
         SELECT name FROM sqlite_master WHERE type='table' AND name='bookreferences'
-        """
-                            )
+    """)
     if len(tables.fetchall()) == 0:
         create_tables(connection)
 
