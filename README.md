@@ -1,6 +1,13 @@
 # Minitex
 
-Ohjelmistotuotanto-kurssin miniprojekti | Helsingin yliopisto | Syksy 2022
+Minitex is a command-line application for managing academic references in the BibTeX format. Created for the software engineering course [Ohjelmistotuotanto](https://ohjelmistotuotanto-hy.github.io/) at the [University of Helsinki](https://www.helsinki.fi/en/faculty-science/faculty/computer-science) in autumn 2022.
+
+Created by:
+- [Ilari Haho](https://github.com/Fimen)
+- [Isak Pulkki](https://github.com/isakpulkki)
+- [Riku Rauhala](https://github.com/rikurauhala)
+- [Henri Remonen](https://github.com/HRemonen)
+- [Samppa Salo](https://github.com/Sam0ni)
 
 ## Status
 
