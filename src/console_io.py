@@ -105,7 +105,6 @@ class ConsoleIO:
                 return False
             try:
                 reference = ccr.get_publication_as_json(doi)
-                print(reference)
             except ValueError:
                 self.print_invalid("Invalid DOI, try again.")
                 continue
