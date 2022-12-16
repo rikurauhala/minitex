@@ -100,35 +100,41 @@ class ConsoleIO:
             dict: authors, title, year published and publisher as dict.
         """
         while True:
+            doi = self.input("Insert a valid DOI (q to cancel): ")
+            if doi.lower() == "q":
+                return False
             try:
-                doi = self.input("Insert a valid DOI (q to cancel): ")
-                if doi.lower() == "q":
-                    return False
                 reference = ccr.get_publication_as_json(doi)
+                print(reference)
             except ValueError:
                 self.print_invalid("Invalid DOI, try again.")
                 continue
             except NetworkError:
                 self.print_invalid("Connection timed out. Try again later.")
                 break
-            reference_type = reference["type"]
-            if reference_type != "book":
+
+            if reference["type"] not in ["book", "monograph"]:
                 self.print_invalid("Reference must be a book, try again.")
                 continue
-            year = reference["published"]["date-parts"][0][0]
-            editors = reference["editor"]
+
+            if "editor" in reference:
+                editors = reference["editor"]
+            else:
+                editors = reference["author"]
+
             authors_list = []
+
             for author in editors:
                 first = author["given"]
                 last = author["family"]
                 authors_list.append(f"{first} {last}")
+
             authors = " and ".join(authors_list)
-            title = reference["title"][0]
-            publisher = reference["publisher"]
+
             reference = {
                 "authors": authors,
-                "title": title,
-                "year": str(year),
-                "publisher": publisher
+                "title": reference["title"][0],
+                "year": str(reference["published"]["date-parts"][0][0]),
+                "publisher": reference["publisher"]
             }
             return reference
