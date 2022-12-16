@@ -16,7 +16,7 @@ Created by:
 
 ## Releases
 
-- 1.0 (pending)
+- [v1.0.0](https://github.com/rikurauhala/minitex/releases/tag/v1.0.0)
 - [Demo](https://github.com/rikurauhala/minitex/releases/tag/demo)
 - [Sprint 2](https://github.com/rikurauhala/minitex/releases/tag/sprint2)
 
