@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "minitex"
-version = "0.1.0"
+version = "1.0.0"
 description = "An application for organizing references in the BibTeX format."
 authors = [
     "Henri Remonen <henri.remonen@helsinki.fi>",
